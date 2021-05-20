@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Programmentwurf_BankingApi._0Plugin.Bank;
+using Programmentwurf_BankingApi._1Adapter.Bank;
 using Programmentwurf_BankingApi._3Domain.Others;
 using Programmentwurf_BankingApi.Adapter.Konto;
 using Programmentwurf_BankingApi.Adapter.Transaction;
@@ -35,6 +37,8 @@ namespace Programmentwurf_BankingApi
             services.AddScoped<KontoToKontoResourceMapper, KontoToKontoResourceMapper>();
             services.AddScoped<TransactionRepositoryBridge, TransactionRepositoryBridge>();
             services.AddScoped<TransactionToTransactionResourceMapper, TransactionToTransactionResourceMapper>();
+            services.AddScoped<BankRepositoryBridge, BankRepositoryBridge>();
+            services.AddScoped<BankToBankResourceMapper, BankToBankResourceMapper>();
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IMailService, MailService>();
             services.AddControllers();

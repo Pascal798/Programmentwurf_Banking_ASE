@@ -40,7 +40,7 @@ namespace Programmentwurf_BankingApi.Plugin.Konto
 
         public async void create(KontoEntity konto)
         {
-            Context.Add(konto);
+            Context.Konten.Add(konto);
             await Context.SaveChangesAsync();
         }
 
@@ -72,6 +72,7 @@ namespace Programmentwurf_BankingApi.Plugin.Konto
             if (kontoEntity == null)
             {
                 System.Console.WriteLine("User not found");
+                return;
             }
 
             Context.Konten.Remove(kontoEntity);
