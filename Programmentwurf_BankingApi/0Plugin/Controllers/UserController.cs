@@ -89,7 +89,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("[action]")]
-        public IActionResult Login(LoginObject loginInfo)
+        public UserEntity Login(LoginObject loginInfo)
         {
             return UserRepositoryBridge.login(loginInfo.email, loginInfo.password);
         }

@@ -83,23 +83,23 @@ namespace Programmentwurf_BankingApi.Plugin.User
             return userEntity;
         }
 
-        public IActionResult login(string email, string password)
+        public UserEntity login(string email, string password)
         {
             var userEntity = findByEmail(email);
             if(userEntity != null)
             {
                 if(userEntity.Password == password)
                 {
-                    return new OkObjectResult(userEntity.Id);
+                    return userEntity;
                 }
                 else
                 {
-                    return new UnauthorizedObjectResult("Wrong password");
+                    return null;
                 }
             }
             else
             {
-                return new NotFoundObjectResult("Email wrong");
+                return null;
             }
         }
 
