@@ -4,14 +4,72 @@
     "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi_Tests\\Programmentwurf_BankingApi_Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\Programmentwurf_BankingApi.csproj": {
+    "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\1_Adapter\\1_Adapter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\Programmentwurf_BankingApi.csproj",
-        "projectName": "Programmentwurf_BankingApi",
-        "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\Programmentwurf_BankingApi.csproj",
+        "projectUniqueName": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\1_Adapter\\1_Adapter.csproj",
+        "projectName": "1_Adapter",
+        "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\1_Adapter\\1_Adapter.csproj",
         "packagesPath": "C:\\Users\\Pasca\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\obj\\",
+        "outputPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\1_Adapter\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Pasca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\3_Domain.csproj": {
+                "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\3_Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\3_Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\3_Domain.csproj",
+        "projectName": "3_Domain",
+        "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\3_Domain.csproj",
+        "packagesPath": "C:\\Users\\Pasca\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pasca\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,9 +102,84 @@
               "target": "Package",
               "version": "[2.12.0, )"
             },
-            "Microsoft.AspNet.WebApi.Client": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
               "target": "Package",
-              "version": "[5.2.7, )"
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\0_Plugin.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\0_Plugin.csproj",
+        "projectName": "0_Plugin",
+        "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\0_Plugin.csproj",
+        "packagesPath": "C:\\Users\\Pasca\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Pasca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\1_Adapter\\1_Adapter.csproj": {
+                "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\1_Adapter\\1_Adapter.csproj"
+              },
+              "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\3_Domain.csproj": {
+                "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\3_Domain\\3_Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -58,29 +191,11 @@
               "target": "Package",
               "version": "[5.0.6, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.OpenApi": {
               "target": "Package",
-              "version": "[5.0.6, )"
+              "version": "[1.2.3, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.6, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[5.0.2, )"
-            },
-            "MimeKit": {
-              "target": "Package",
-              "version": "[2.12.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.1, )"
-            },
-            "Swashbuckle.AspNetCore": {
+            "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
               "version": "[5.6.3, )"
             }
@@ -131,8 +246,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\Programmentwurf_BankingApi.csproj": {
-                "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\Programmentwurf_BankingApi.csproj"
+              "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\0_Plugin.csproj": {
+                "projectPath": "C:\\Users\\Pasca\\source\\repos\\Programmentwurf_BankingApi\\Programmentwurf_Banking_ASE\\Programmentwurf_BankingApi\\0_Plugin.csproj"
               }
             }
           }

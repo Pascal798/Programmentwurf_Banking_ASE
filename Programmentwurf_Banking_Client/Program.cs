@@ -19,6 +19,7 @@ namespace Programmentwurf_Banking_Client
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Cache.GenerateDefaultData();
             Application.Run(new Login());
         }
     }

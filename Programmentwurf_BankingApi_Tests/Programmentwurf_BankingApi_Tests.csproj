@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Programmentwurf_BankingApi\Programmentwurf_BankingApi.csproj" />
+    <ProjectReference Include="..\Programmentwurf_BankingApi\0_Plugin.csproj" />
   </ItemGroup>
 
   <ItemGroup>

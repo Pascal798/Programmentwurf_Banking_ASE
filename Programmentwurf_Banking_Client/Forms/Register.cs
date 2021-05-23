@@ -24,6 +24,7 @@ namespace Programmentwurf_Banking_Client.Forms
 
             if(response.ToString() == "Created")
             {
+                var msgBox = MessageBox.Show("User created");
                 this.Close();
             }
         }

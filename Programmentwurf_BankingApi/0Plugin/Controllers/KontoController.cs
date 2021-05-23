@@ -22,7 +22,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
 
         // GET: api/Konto
         [HttpGet]
-        public async Task<List<KontoResource>> GetUsers()
+        public async Task<List<KontoResource>> GetKonten()
         {
             var konten = await KontoRepositoryBridge.findAllKonten();
             List<KontoResource> kontoList = new List<KontoResource>();
@@ -70,24 +70,24 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         // PUT: api/Konto/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{kontoid}/{betrag}")]
-        public NoContentResult PutKontoEntity(int kontoid, double betrag)
+        public IActionResult PutKontoEntity(int kontoid, double betrag)
         {
             KontoRepositoryBridge.updateKontostand(kontoid, betrag);
 
-            return NoContent();
+            return new OkObjectResult("Updated");
         }
 
         // POST: api/Konto
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public CreatedAtActionResult PostKontoEntity(KontoEntity kontoEntity)
+        [HttpPost("{userid}")]
+        public CreatedAtActionResult PostKontoEntity(KontoResource konto, int userid)
         {
-            KontoRepositoryBridge.create(kontoEntity);
+            KontoRepositoryBridge.create(new KontoEntity(konto.Kontostand, userid, konto.BIC));
 
             return CreatedAtAction(
                 nameof(GetKontoEntity), 
-                new { kontoid = kontoEntity.Id }, 
-                kontoEntity);
+                new { kontoid = konto.KontoId }, 
+                konto);
         }
 
         // DELETE: api/Konto/5

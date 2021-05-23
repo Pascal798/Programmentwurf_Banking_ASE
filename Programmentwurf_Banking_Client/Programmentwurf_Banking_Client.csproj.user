@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Forms\BankOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CreateBank.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CreateKonto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\EditMoney.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>

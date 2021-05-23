@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Programmentwurf_BankingApi._1Adapter.Bank;
 using Programmentwurf_BankingApi._3Domain.Aggregates;
 using Programmentwurf_BankingApi._3Domain.Repositories;
 using Programmentwurf_BankingApi.Domain.Entities;
@@ -42,9 +43,9 @@ namespace Programmentwurf_BankingApi._0Plugin.Bank
         {
             return await Context.BankAggregate.FindAsync(bankid);
         }
-        public async Task<List<KontoEntity>> getKonten(int bankid)
+        public async Task<List<KontoEntity>> getKonten(string bic)
         {
-            return await Context.Konten.Where(x => x.BankId == bankid).ToListAsync();
+            return await Context.Konten.Where(x => x.BIC == bic).ToListAsync();
         }
         private bool BankAggregateExists(string bic)
         {

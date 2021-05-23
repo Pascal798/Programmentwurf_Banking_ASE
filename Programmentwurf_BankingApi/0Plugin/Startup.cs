@@ -42,10 +42,7 @@ namespace Programmentwurf_BankingApi
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IMailService, MailService>();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Programmentwurf_BankingApi", Version = "v1" });
-            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,8 +51,8 @@ namespace Programmentwurf_BankingApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Programmentwurf_BankingApi v1"));
+
+                
             }
 
             app.UseHttpsRedirection();

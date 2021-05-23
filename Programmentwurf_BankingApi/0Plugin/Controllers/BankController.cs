@@ -43,9 +43,9 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
 
         // GET: api/Bank/5
         [HttpGet("{id}")]
-        public async Task<BankResource> GetBankAggregate(int id)
+        public async Task<BankResource> GetBankAggregate(int bic)
         {
-            var bankAggregate = await BankRepositoryBridge.findById(id);
+            var bankAggregate = await BankRepositoryBridge.findById(bic);
 
             if (bankAggregate == null)
             {
@@ -58,11 +58,11 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
         // POST: api/Bank
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public CreatedAtActionResult PostBankAggregate(BankAggregate bankAggregate)
+        public CreatedAtActionResult PostBankAggregate(BankResource bank)
         {
-            BankRepositoryBridge.create(bankAggregate);
+            BankRepositoryBridge.create(new BankAggregate(bank.Name, bank.BIC, bank.Land, bank.Postleitzahl, bank.Straße));
 
-            return CreatedAtAction(nameof(GetBankAggregate), new { id = bankAggregate.Id }, bankAggregate);
+            return CreatedAtAction(nameof(GetBankAggregate), new { id = bank.BIC }, bank);
         }
 
         // DELETE: api/Bank/5
@@ -75,9 +75,9 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
 
         // GET: api/Bank/GetKonten/5
         [HttpGet("[action]/{id}")]
-        public async Task<List<KontoResource>> GetKonten(int id)
+        public async Task<List<KontoResource>> GetKonten(string bic)
         {
-            var konten = await BankRepositoryBridge.getKonten(id);
+            var konten = await BankRepositoryBridge.getKonten(bic);
             var list = new List<KontoResource>();
             foreach(var konto in konten)
             {

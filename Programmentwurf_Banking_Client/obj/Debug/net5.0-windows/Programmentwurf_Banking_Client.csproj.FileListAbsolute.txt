@@ -49,3 +49,10 @@ C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_A
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\Microsoft.Extensions.Options.dll
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\Microsoft.Extensions.Primitives.dll
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\Microsoft.Net.Http.Headers.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\System.Runtime.Caching.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.Home.resources
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.EditMoney.resources
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.BankOverview.resources
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.CreateBank.resources
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.CreateKonto.resources
