@@ -9,8 +9,9 @@ namespace Programmentwurf_BankingApi.Adapter.Transaction
 {
     public class TransactionResource
     {
-        public TransactionResource(double betrag, int kontoidsender, int kontoidempfänger)
+        public TransactionResource(DateTime date, double betrag, int kontoidsender, int kontoidempfänger)
         {
+            Date = date;
             Betrag = betrag;
             KontoIdSender = kontoidsender;
             KontoIdEmpfänger = kontoidempfänger;
@@ -19,7 +20,7 @@ namespace Programmentwurf_BankingApi.Adapter.Transaction
         {
 
         }
-
+        public DateTime Date { get; set; }
         public double Betrag { get; set; }
         public int KontoIdSender { get; set; }
         public int KontoIdEmpfänger { get; set; }

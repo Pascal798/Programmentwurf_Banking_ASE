@@ -17,8 +17,8 @@ namespace Programmentwurf_BankingApi.Adapter.Konto
         {
             return new KontoResource(
                 konto.Id,
-                konto.BIC,
-                konto.Kontostand
+                konto.UserId,
+                konto.BIC
                 );
         }
     }

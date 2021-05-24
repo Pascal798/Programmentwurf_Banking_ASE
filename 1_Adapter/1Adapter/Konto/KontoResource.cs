@@ -7,12 +7,6 @@ namespace Programmentwurf_BankingApi.Adapter.Konto
 {
     public class KontoResource
     {
-        public KontoResource(int kontoid, string bic, double kontostand)
-        {
-            KontoId = kontoid;
-            BIC = bic;
-            Kontostand = kontostand;
-        }
         public KontoResource(string bic, double kontostand)
         {
             BIC = bic;
@@ -20,7 +14,15 @@ namespace Programmentwurf_BankingApi.Adapter.Konto
         }
         public KontoResource() { }
 
-        public int KontoId { get; set; }
+        public KontoResource(int id, int userId, string bIC)
+        {
+            Id = id;
+            UserId = userId;
+            BIC = bIC;
+        }
+
+        public int Id { get; set; }
+        public int UserId { get; set; }
         public string BIC { get; set; }
         public double Kontostand { get; set; }
 

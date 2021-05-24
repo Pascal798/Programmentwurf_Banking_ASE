@@ -25,13 +25,13 @@ namespace Programmentwurf_Banking_Client.Forms
         {
             foreach(var konto in Konten)
             {
-                KontoId.Items.Add(konto.KontoId);
+                KontoId.Items.Add(konto.Id);
             }
         }
 
         private void KontoId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var konto = Konten.Where(x => x.KontoId == int.Parse(KontoId.SelectedItem.ToString())).FirstOrDefault();
+            var konto = Konten.Where(x => x.Id == int.Parse(KontoId.SelectedItem.ToString())).FirstOrDefault();
             KontostandLabel.Text = konto.Kontostand.ToString();
             BicLabel.Text = konto.BIC;
         }
@@ -45,7 +45,7 @@ namespace Programmentwurf_Banking_Client.Forms
                 if (response.IsSuccessStatusCode)
                 {
                     var betrag = double.Parse(EditTextbox.Text);
-                    var konto = Konten.Where(x => x.KontoId == int.Parse(KontoId.SelectedItem.ToString())).FirstOrDefault();
+                    var konto = Konten.Where(x => x.Id == int.Parse(KontoId.SelectedItem.ToString())).FirstOrDefault();
                     konto.Kontostand += betrag;
                     KontostandLabel.Text = konto.Kontostand.ToString();
                 }

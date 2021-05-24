@@ -27,7 +27,8 @@ namespace Programmentwurf_Banking_Client.Requests.User
             {
                 if (response.IsSuccessStatusCode) 
                 {
-                    UserModel user = await response.Content.ReadAsAsync<UserModel>();
+                    var resultString = await response.Content.ReadAsStringAsync();
+                    var user = JsonConvert.DeserializeObject<UserModel>(resultString);
                     return user;
                 }
                 else
@@ -50,6 +51,25 @@ namespace Programmentwurf_Banking_Client.Requests.User
                 if (response.IsSuccessStatusCode)
                 {
                     return response.StatusCode;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+        public async static Task<List<UserModel>> GetAllUsers()
+        {
+            string url = "https://localhost:44362/api/User";
+
+
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var resultString = await response.Content.ReadAsStringAsync();
+                    var users = JsonConvert.DeserializeObject<List<UserModel>>(resultString);
+                    return users;
                 }
                 else
                 {

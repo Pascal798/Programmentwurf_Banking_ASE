@@ -16,8 +16,9 @@ namespace Programmentwurf_BankingApi.Adapter.Transaction
         private TransactionResource map(TransactionEntity transaction)
         {
             return new TransactionResource(
-                transaction.TransactionInfo.getBetrag(), 
-                transaction.TransactionInfo.getKontoIdSender(), 
+                transaction.Date,
+                transaction.TransactionInfo.getBetrag(),
+                transaction.TransactionInfo.getKontoIdSender(),
                 transaction.TransactionInfo.getKontoIdEmpfänger());
         }
     }

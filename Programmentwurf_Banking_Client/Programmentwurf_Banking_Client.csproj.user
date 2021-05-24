@@ -10,6 +10,9 @@
     <Compile Update="Forms\CreateKonto.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\CreateTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\EditMoney.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -20,6 +23,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\TransactionOverview.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -75,8 +75,20 @@ namespace Programmentwurf_Banking_Client.Forms
 
         private async void ReloadBtn_Click(object sender, EventArgs e)
         {
-            var Konten = await KontoProcessor.GetKonten(User.Id);
+            Konten = await KontoProcessor.GetKonten(User.Id);
             KontoGridView.DataSource = Konten;
+        }
+
+        private void SeeTransactionsBtn_Click(object sender, EventArgs e)
+        {
+            var transactionView = new TransactionOverview();
+            transactionView.Show();
+        }
+
+        private void TransactionBtn_Click(object sender, EventArgs e)
+        {
+            var createTransaction = new CreateTransaction();
+            createTransaction.Show();
         }
     }
 }

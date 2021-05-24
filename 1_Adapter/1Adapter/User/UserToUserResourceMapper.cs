@@ -15,7 +15,7 @@ namespace Programmentwurf_BankingApi.Adapter.User
 
         private UserResource map(UserEntity user)
         {
-            return new UserResource(user.Name, user.Email);
+            return new UserResource(user.Id, user.Name, user.Email);
         }
     }
 }

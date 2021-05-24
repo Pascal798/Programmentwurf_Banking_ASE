@@ -36,6 +36,8 @@ namespace Programmentwurf_Banking_Client.Forms
             this.NewKontoBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ReloadBtn = new System.Windows.Forms.Button();
+            this.SeeTransactionsBtn = new System.Windows.Forms.Button();
+            this.TransactionBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.KontoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +82,7 @@ namespace Programmentwurf_Banking_Client.Forms
             // 
             this.NewKontoBtn.Location = new System.Drawing.Point(12, 262);
             this.NewKontoBtn.Name = "NewKontoBtn";
-            this.NewKontoBtn.Size = new System.Drawing.Size(111, 23);
+            this.NewKontoBtn.Size = new System.Drawing.Size(140, 23);
             this.NewKontoBtn.TabIndex = 4;
             this.NewKontoBtn.Text = "Neues Konto";
             this.NewKontoBtn.UseVisualStyleBackColor = true;
@@ -98,19 +100,41 @@ namespace Programmentwurf_Banking_Client.Forms
             // 
             // ReloadBtn
             // 
-            this.ReloadBtn.Location = new System.Drawing.Point(13, 292);
+            this.ReloadBtn.Location = new System.Drawing.Point(489, 321);
             this.ReloadBtn.Name = "ReloadBtn";
-            this.ReloadBtn.Size = new System.Drawing.Size(110, 23);
+            this.ReloadBtn.Size = new System.Drawing.Size(139, 23);
             this.ReloadBtn.TabIndex = 6;
             this.ReloadBtn.Text = "Aktualisieren";
             this.ReloadBtn.UseVisualStyleBackColor = true;
             this.ReloadBtn.Click += new System.EventHandler(this.ReloadBtn_Click);
+            // 
+            // SeeTransactionsBtn
+            // 
+            this.SeeTransactionsBtn.Location = new System.Drawing.Point(12, 321);
+            this.SeeTransactionsBtn.Name = "SeeTransactionsBtn";
+            this.SeeTransactionsBtn.Size = new System.Drawing.Size(139, 23);
+            this.SeeTransactionsBtn.TabIndex = 7;
+            this.SeeTransactionsBtn.Text = "Siehe Transaktionen";
+            this.SeeTransactionsBtn.UseVisualStyleBackColor = true;
+            this.SeeTransactionsBtn.Click += new System.EventHandler(this.SeeTransactionsBtn_Click);
+            // 
+            // TransactionBtn
+            // 
+            this.TransactionBtn.Location = new System.Drawing.Point(12, 291);
+            this.TransactionBtn.Name = "TransactionBtn";
+            this.TransactionBtn.Size = new System.Drawing.Size(140, 23);
+            this.TransactionBtn.TabIndex = 8;
+            this.TransactionBtn.Text = "Überweisung";
+            this.TransactionBtn.UseVisualStyleBackColor = true;
+            this.TransactionBtn.Click += new System.EventHandler(this.TransactionBtn_Click);
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 431);
+            this.Controls.Add(this.TransactionBtn);
+            this.Controls.Add(this.SeeTransactionsBtn);
             this.Controls.Add(this.ReloadBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.NewKontoBtn);
@@ -136,5 +160,7 @@ namespace Programmentwurf_Banking_Client.Forms
         private System.Windows.Forms.Button NewKontoBtn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ReloadBtn;
+        private System.Windows.Forms.Button SeeTransactionsBtn;
+        private System.Windows.Forms.Button TransactionBtn;
     }
 }

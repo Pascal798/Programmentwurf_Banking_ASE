@@ -2,6 +2,12 @@
 {
     public sealed class TransactionVO
     {
+        public TransactionVO(double betrag, int kontoIdSender, int kontoIdEmpfänger)
+        {
+            Betrag = betrag;
+            KontoIdSender = kontoIdSender;
+            KontoIdEmpfänger = kontoIdEmpfänger;
+        }
 
         public int Id { get; set; }
         public double Betrag { get; set; }
