@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1_Adapter", "1_Adapter\1_Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3_Domain", "3_Domain\3_Domain.csproj", "{F76B59F5-1374-4235-915E-F706CF532E7A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Programmentwurf_BankingApi", "Programmentwurf_BankingApi", "{8463F9AA-3E2B-466F-A263-AC2215148BE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{294CA12B-B894-4022-8F38-BF01402B82FD} = {8463F9AA-3E2B-466F-A263-AC2215148BE9}
+		{D50E533E-7652-43FC-B8A9-BC509CF897BB} = {8463F9AA-3E2B-466F-A263-AC2215148BE9}
+		{F76B59F5-1374-4235-915E-F706CF532E7A} = {8463F9AA-3E2B-466F-A263-AC2215148BE9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D19762A1-7364-45D3-8979-C5935FE4F9D7}

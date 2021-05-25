@@ -8,6 +8,15 @@ namespace Programmentwurf_BankingApi.Adapter.Konto
 {
     public class KontoToKontoResourceMapper
     {
+        private static KontoToKontoResourceMapper instance;
+        public static KontoToKontoResourceMapper getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new KontoToKontoResourceMapper();
+            }
+            return instance;
+        }
         public KontoResource apply(KontoEntity konto)
         {
             return map(konto);

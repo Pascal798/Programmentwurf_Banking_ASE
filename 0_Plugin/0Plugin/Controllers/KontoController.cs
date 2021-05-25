@@ -14,10 +14,10 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         private KontoRepositoryBridge KontoRepositoryBridge;
         private KontoToKontoResourceMapper KontoToKontoResourceMapper;
 
-        public KontoController(KontoRepositoryBridge kontoRepositoryBridge, KontoToKontoResourceMapper kontoToKontoResourceMapper)
+        public KontoController(KontoRepositoryBridge kontoRepositoryBridge)
         {
             KontoRepositoryBridge = kontoRepositoryBridge;
-            KontoToKontoResourceMapper = kontoToKontoResourceMapper;
+            KontoToKontoResourceMapper = KontoToKontoResourceMapper.getInstance();
         }
 
         // GET: api/Konto

@@ -20,10 +20,10 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         private UserRepositoryBridge UserRepositoryBridge;
         private UserToUserResourceMapper UserToUserResourceMapper;
 
-        public UserController(UserRepositoryBridge userService, UserToUserResourceMapper userToUserResourceMapper)
+        public UserController(UserRepositoryBridge bridge)
         {
-            UserRepositoryBridge = userService;
-            UserToUserResourceMapper = userToUserResourceMapper;
+            UserRepositoryBridge = bridge;
+            UserToUserResourceMapper = UserToUserResourceMapper.getInstance();
         }
 
         // GET: api/User

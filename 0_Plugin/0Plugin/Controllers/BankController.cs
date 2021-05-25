@@ -21,11 +21,11 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
         private BankToBankResourceMapper BankToBankResourceMapper;
         private KontoToKontoResourceMapper KontoToKontoResourceMapper;
 
-        public BankController(BankRepositoryBridge bankRepositoryBridge, BankToBankResourceMapper bankToBankResourceMapper, KontoToKontoResourceMapper kontoToKontoResourceMapper)
+        public BankController(BankRepositoryBridge bankRepositoryBridge, BankToBankResourceMapper bankToBankResourceMapper)
         {
             BankRepositoryBridge = bankRepositoryBridge;
             BankToBankResourceMapper = bankToBankResourceMapper;
-            KontoToKontoResourceMapper = kontoToKontoResourceMapper;
+            KontoToKontoResourceMapper = KontoToKontoResourceMapper.getInstance();
         }
 
         // GET: api/Bank

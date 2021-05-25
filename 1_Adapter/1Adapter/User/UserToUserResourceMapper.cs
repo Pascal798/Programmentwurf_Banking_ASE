@@ -8,6 +8,15 @@ namespace Programmentwurf_BankingApi.Adapter.User
 {
     public class UserToUserResourceMapper
     {
+        private static UserToUserResourceMapper instance;
+        public static UserToUserResourceMapper getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new UserToUserResourceMapper();
+            }
+            return instance;
+        }
         public UserResource apply (UserEntity user)
         {
             return map(user);

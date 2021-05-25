@@ -22,8 +22,12 @@ namespace Programmentwurf_BankingApi._0Plugin.Bank
         }
         public async void create(BankAggregate bank)
         {
+            if(!Context.BankAggregate.Any( x => x.Bank.BIC == bank.Bank.BIC))
+            {
                 Context.BankAggregate.Add(bank);
                 await Context.SaveChangesAsync();
+            }
+                
         }
         public async void delete(int bankid)
         {

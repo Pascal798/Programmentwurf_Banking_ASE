@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Programmentwurf_BankingApi.Plugin.BankingContext">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAACAAAAAAAAAAAAAAAAAAkABgAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>0Plugin\BankingContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Programmentwurf_BankingApi.Plugin.User.UserRepositoryBridge">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAQEAQAAAAAIAAQBAAAAEEAA=</HashCode>
+      <FileName>0Plugin\User\UserRepositoryBridge.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -32,9 +32,7 @@ namespace Programmentwurf_BankingApi
         {
             services.AddDbContext<BankingContext>(opt => opt.UseInMemoryDatabase("Banking"));
             services.AddScoped<UserRepositoryBridge, UserRepositoryBridge>();
-            services.AddScoped<UserToUserResourceMapper, UserToUserResourceMapper>();
             services.AddScoped<KontoRepositoryBridge, KontoRepositoryBridge>();
-            services.AddScoped<KontoToKontoResourceMapper, KontoToKontoResourceMapper>();
             services.AddScoped<TransactionRepositoryBridge, TransactionRepositoryBridge>();
             services.AddScoped<TransactionToTransactionResourceMapper, TransactionToTransactionResourceMapper>();
             services.AddScoped<BankRepositoryBridge, BankRepositoryBridge>();
