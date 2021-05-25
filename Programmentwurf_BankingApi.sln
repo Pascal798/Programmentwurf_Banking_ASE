@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0_Plugin", "0_Plugin\0_Plugin.csproj", "{294CA12B-B894-4022-8F38-BF01402B82FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0_Plugin", "Programmentwurf_BankingApi\0_Plugin\0_Plugin.csproj", "{294CA12B-B894-4022-8F38-BF01402B82FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Programmentwurf_BankingApi_Tests", "Programmentwurf_BankingApi_Tests\Programmentwurf_BankingApi_Tests.csproj", "{7052F9E4-DF64-47A1-A847-D47BBE1FB036}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Programmentwurf_Banking_Client", "Programmentwurf_Banking_Client\Programmentwurf_Banking_Client.csproj", "{55874CAF-822A-4F29-8E20-2067D7962027}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1_Adapter", "1_Adapter\1_Adapter.csproj", "{D50E533E-7652-43FC-B8A9-BC509CF897BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1_Adapter", "Programmentwurf_BankingApi\1_Adapter\1_Adapter.csproj", "{D50E533E-7652-43FC-B8A9-BC509CF897BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3_Domain", "3_Domain\3_Domain.csproj", "{F76B59F5-1374-4235-915E-F706CF532E7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3_Domain", "Programmentwurf_BankingApi\3_Domain\3_Domain.csproj", "{F76B59F5-1374-4235-915E-F706CF532E7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Programmentwurf_BankingApi", "Programmentwurf_BankingApi", "{8463F9AA-3E2B-466F-A263-AC2215148BE9}"
 EndProject
