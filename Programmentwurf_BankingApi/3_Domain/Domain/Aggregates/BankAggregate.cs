@@ -1,17 +1,19 @@
-﻿using Programmentwurf_BankingApi._3Domain.Entities;
-using Programmentwurf_BankingApi._3Domain.Value_Objects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using _3_Domain.Domain.Entities;
+using _3_Domain.Domain.Value_Objects;
 
-namespace Programmentwurf_BankingApi._3Domain.Aggregates
+namespace _3_Domain.Domain.Aggregates
 {
     public class BankAggregate
     {
         public BankAggregate() { }
         public BankAggregate(string name, string bic, string land, int plz, string straße)
         {
+            Bank = new BankEntity(name, bic);
+            Adresse = new AdressVO(land, plz, straße);
+        }
+        public BankAggregate(int id, string name, string bic, string land, int plz, string straße)
+        {
+            Id = id;
             Bank = new BankEntity(name, bic);
             Adresse = new AdressVO(land, plz, straße);
         }

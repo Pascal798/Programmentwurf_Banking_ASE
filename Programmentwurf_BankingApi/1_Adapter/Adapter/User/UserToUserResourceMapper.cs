@@ -1,10 +1,7 @@
-﻿using Programmentwurf_BankingApi.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using _3_Domain.Domain.Entities;
 
-namespace Programmentwurf_BankingApi.Adapter.User
+namespace _1_Adapter.Adapter.User
 {
     public class UserToUserResourceMapper
     {
@@ -25,6 +22,15 @@ namespace Programmentwurf_BankingApi.Adapter.User
         private UserResource map(UserEntity user)
         {
             return new UserResource(user.Id, user.Name, user.Email);
+        }
+        public List<UserResource> convertToUserList(List<UserEntity> userEntities)
+        {
+            var userlist = new List<UserResource>();
+            foreach(var userEntity in userEntities)
+            {
+                userlist.Add(new UserResource(userEntity.Id, userEntity.Name, userEntity.Email));
+            }
+            return userlist;
         }
     }
 }

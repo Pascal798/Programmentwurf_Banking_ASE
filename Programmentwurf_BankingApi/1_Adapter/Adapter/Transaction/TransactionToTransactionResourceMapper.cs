@@ -1,25 +1,46 @@
-﻿using Programmentwurf_BankingApi.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using _3_Domain.Domain.Aggregates;
 
-namespace Programmentwurf_BankingApi.Adapter.Transaction
+namespace _1_Adapter.Adapter.Transaction
 {
     public class TransactionToTransactionResourceMapper
     {
-        public TransactionResource apply(TransactionEntity transaction)
+        private static TransactionToTransactionResourceMapper instance;
+
+        public static TransactionToTransactionResourceMapper getInstance()
+        {
+            if(instance == null)
+            {
+                instance = new TransactionToTransactionResourceMapper();
+            }
+            return instance;
+        }
+        public TransactionResource apply(TransactionAggregate transaction)
         {
             return map(transaction);
         }
 
-        private TransactionResource map(TransactionEntity transaction)
+        private TransactionResource map(TransactionAggregate transaction)
         {
             return new TransactionResource(
-                transaction.Date,
+                transaction.TransactionInfo.getDate(),
                 transaction.TransactionInfo.getBetrag(),
                 transaction.TransactionInfo.getKontoIdSender(),
                 transaction.TransactionInfo.getKontoIdEmpfänger());
+        }
+
+        public List<TransactionResource> convertToTransactionResourceList(List<TransactionAggregate> transactionEntities)
+        {
+            var transactionlist = new List<TransactionResource>();
+            foreach (var transactionEntity in transactionEntities)
+            {
+                transactionlist.Add(new TransactionResource(
+                    transactionEntity.TransactionInfo.getDate(), 
+                    transactionEntity.TransactionInfo.getBetrag(), 
+                    transactionEntity.TransactionInfo.getKontoIdSender(), 
+                    transactionEntity.TransactionInfo.getKontoIdEmpfänger()));
+            }
+            return transactionlist;
         }
     }
 }

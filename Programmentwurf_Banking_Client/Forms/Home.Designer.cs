@@ -38,6 +38,7 @@ namespace Programmentwurf_Banking_Client.Forms
             this.ReloadBtn = new System.Windows.Forms.Button();
             this.SeeTransactionsBtn = new System.Windows.Forms.Button();
             this.TransactionBtn = new System.Windows.Forms.Button();
+            this.ChangePasswordBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.KontoGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,11 +129,22 @@ namespace Programmentwurf_Banking_Client.Forms
             this.TransactionBtn.UseVisualStyleBackColor = true;
             this.TransactionBtn.Click += new System.EventHandler(this.TransactionBtn_Click);
             // 
+            // ChangePasswordBtn
+            // 
+            this.ChangePasswordBtn.Location = new System.Drawing.Point(491, 351);
+            this.ChangePasswordBtn.Name = "ChangePasswordBtn";
+            this.ChangePasswordBtn.Size = new System.Drawing.Size(137, 23);
+            this.ChangePasswordBtn.TabIndex = 9;
+            this.ChangePasswordBtn.Text = "Passwort ändern";
+            this.ChangePasswordBtn.UseVisualStyleBackColor = true;
+            this.ChangePasswordBtn.Click += new System.EventHandler(this.ChangePasswordBtn_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 431);
+            this.Controls.Add(this.ChangePasswordBtn);
             this.Controls.Add(this.TransactionBtn);
             this.Controls.Add(this.SeeTransactionsBtn);
             this.Controls.Add(this.ReloadBtn);
@@ -162,5 +174,6 @@ namespace Programmentwurf_Banking_Client.Forms
         private System.Windows.Forms.Button ReloadBtn;
         private System.Windows.Forms.Button SeeTransactionsBtn;
         private System.Windows.Forms.Button TransactionBtn;
+        private System.Windows.Forms.Button ChangePasswordBtn;
     }
 }

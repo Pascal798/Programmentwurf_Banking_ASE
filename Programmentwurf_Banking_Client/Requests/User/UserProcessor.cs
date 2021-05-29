@@ -10,12 +10,13 @@ using Programmentwurf_Banking_Client.Models.User;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Windows.Forms;
 
 namespace Programmentwurf_Banking_Client.Requests.User
 {
     public static class UserProcessor
     {
-        public async static Task<UserModel> LoginUser(string email, string password)
+        public static async Task<UserModel> LoginUser(string email, string password)
         {
             string url = "https://localhost:44362/api/User/Login";
 
@@ -38,11 +39,11 @@ namespace Programmentwurf_Banking_Client.Requests.User
             }
         }
 
-        public async static Task<HttpStatusCode> RegisterUser(string email, string name, string password)
+        public static async Task<UserModel> RegisterUser(string email, string name, string password, bool isAdmin = false)
         {
             string url = "https://localhost:44362/api/User";
 
-            var user = new UserModel(email, name, password);
+            var user = new UserModel(email, name, password, isAdmin);
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -50,7 +51,9 @@ namespace Programmentwurf_Banking_Client.Requests.User
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.StatusCode;
+                    var resultString = await response.Content.ReadAsStringAsync();
+                    var resultUser = JsonConvert.DeserializeObject<UserModel>(resultString);
+                    return resultUser;
                 }
                 else
                 {
@@ -58,7 +61,7 @@ namespace Programmentwurf_Banking_Client.Requests.User
                 }
             }
         }
-        public async static Task<List<UserModel>> GetAllUsers()
+        public static async Task<List<UserModel>> GetAllUsers()
         {
             string url = "https://localhost:44362/api/User";
 
@@ -70,6 +73,27 @@ namespace Programmentwurf_Banking_Client.Requests.User
                     var resultString = await response.Content.ReadAsStringAsync();
                     var users = JsonConvert.DeserializeObject<List<UserModel>>(resultString);
                     return users;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<bool> ChangePassword(int id, string oldPassword, string newPassword)
+        {
+            string url = "https://localhost:44362/api/User/Login";
+
+            var obj = new ChangePasswordModel(id, oldPassword, newPassword);
+            var json = JsonConvert.SerializeObject(obj);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            using (HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync(url, content))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
                 }
                 else
                 {

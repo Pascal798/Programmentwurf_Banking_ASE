@@ -90,5 +90,11 @@ namespace Programmentwurf_Banking_Client.Forms
             var createTransaction = new CreateTransaction();
             createTransaction.Show();
         }
+
+        private void ChangePasswordBtn_Click(object sender, EventArgs e)
+        {
+            var changePw = new ChangePassword();
+            changePw.Show();
+        }
     }
 }

@@ -1,16 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Programmentwurf_BankingApi.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using _3_Domain.Domain.Aggregates;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Programmentwurf_BankingApi.Domain.Repositories
+namespace _3_Domain.Domain.Repositories
 {
     public interface TransactionRepository
     {
-        void create(TransactionEntity transaction);
-        Task<List<TransactionEntity>> getAllTransactions(int userid);
+        void create(TransactionAggregate transaction);
+        Task<List<TransactionAggregate>> getAllTransactions(int userid);
         Task<IActionResult> getTransactionsAsMail(int kontoid);
     }
 }

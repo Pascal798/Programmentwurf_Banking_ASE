@@ -1,0 +1,103 @@
+Analysis of Recommendation Algorithms for e-commerce
+
+-compare techniques for recommendation systems by recommendation quality and performance
+
+-Recommender systems:
+	-Receives information form a customer of what he is interested
+	-recommends products that are likely to fit his needs
+-Collaborative filtering is one of the most successful recommender techniques
+	-Works by building a database of preferences for products by consumers
+	-New consumer is matched against the database to discover "neighbors", 
+	which are consumer who have histrically had similar taste to the new consumer
+	-Products the neighbors liked are recommended to the new consumer
+-Two challenges
+	-Improve scalability of the collaborative filtering algorithms
+		-Algorithms need to find tens of millions of potential neighbors nowadays
+		-Algorithms have performance problems with consumer for whom the site has to much information
+	-Improve quality of recommendation
+		-false negatives: products the consumer would like but are not recommended
+		-false positives: products that are recommended though the consumer do not like them
+		-false psoitives are most likely to avoid because they let the users be angry
+	-Both challenges are in conflict because since the less time an algorithm spend on searching for neighbors the more scalable it will be
+	but the quality of the recommendation is much worser then less time will be spent
+	-It is important to treat the two challenges simultaneously so the solutions discovered are both useful and practical
+-Paper
+	-Research both challenges by studying new and existing algorithms that have the potential to improve both scalability and recommendation 
+	quality
+	-Provide systematic experimental evaluation of different techniques for recommender systems
+	-Present new algorithms that are particularly suited for sparse data sets
+-Contributions
+	-Analysis of the effectiveness of recommender systems on actual customer data from an e-commerce site
+	-Comparison of the performance of several different recommender algorithms
+		-collaborative filtering algorithms
+		-algorithms based on dimensionality reduction
+		-classical data mining algorithms
+	-New approach to forming recommendations that has online efficiency advantages and also has quality advantages
+-Recommender systems
+	-GroupLens research system provides a pseudonymous collaborative filtering solution
+	-Ringo and Video Recommender are e-mail and web-based systems that generate recommendations on music and movies
+-Knowledge discovery in database
+	-known as data mining
+	-Main goals:
+		-save money by discovering the potential for efficiencies
+		-make more money by discovering ways to sell more products to customers
+	-One of the best known data mining techniques in recommender systems: discovery of association rules
+		-Find association between two sets of products int he transaction database such the presence of products 
+		in the one set implies the presence of products in the other set
+		-Apriori, Tree projection, DHP, FP-Tree algorithms some of the well knwon algorithms to find association rules
+-Dimensionality Reduction
+	-Reduce the dimensionality of data sets
+	-Principal Component analysis is a widely used technique that computes the eigenvalues 
+	of the customer-customer or product-product similarity matrix and returns k eigenvectors corresponding to k largest eigenvalues
+	as the principal axes of k dimensional space
+	-Latent semantic indexing widely used in information retrieval community
+		-Uses singular value decomposition to factor the original space into three matrices and the process of dimensionality 
+		reduction is performed by reducing the singular matrix
+-Recommender systems
+	-Traditional Data Mining
+		-finding association rules between a set of co-purchased products
+		-association rules can be used to develop top-N recommender systems
+			-each of the n customers get a transaction which contains all the products that they purchased in he past
+			-association rule discovery algorithm searches for association rules that satisfy given minimum support and minimum
+			confidence constraints
+			-First search all rules that are supported by the customer
+			-We sort the products that are predicted by these rules and are not purchased based on the rules that were used to predict
+			->products that are predicted by the rules with a higher confidence are ranked first
+			(is a product predicted by multiple rules we use the rule with the hioghest confidence)
+			-Last we take the first n highest ranked products as the recommended products
+	-Recommender systems based on collaborative filtering
+		-Recommend products to a customer based of the opinions of oher customers
+		-These systems employ statistical techniques to find a set of customers known as neighbors that have a history of agreeing 
+		with the target user
+		-Is a neighborhood formed the systems use algorithms to produce recommendations
+		-Representation:
+			-Sparsity
+			-Scalability
+			-Synonym
+		-Neighborhood formation
+			-Proximity measure: Correlation, Cosine
+			-Types:
+				-Center-based:
+					-scheme forms a neigborhood of size k for a particular customer c by simply
+					selecting the l nearest other customers
+				-Aggregate Neighborhood
+			-Neighborhood formed in low dimensional space
+				-We use a dimensionality reduction technique to produce a low dimensional representation
+				-Then we use vector similarity  to compute the proximity between customers and hence to form neighborhood
+		-Generation of recommendation
+			-Derive the top N recommendations of the neighborhood of customers
+			-Most frequent item recommendation
+				-looks into the neighborhood for each neighbor, scan through his/her purchase data and performs a frequency count
+				of the products
+				-after all neighbors are accounted for the system sorts the products according to their frequency count of the products
+				-then the top N products are recommended
+			-Association rule based recommendation
+				-based on the association rule-based top n recommendation technique
+		-Metrics
+			-Recall
+			-Precision
+			->Quality
+		-Performance
+
+Our results show that dimensionality reduction techniques hold the promise of allowing CF-based algorithms to
+scale to large data sets and at the same time produce highquality recommendations

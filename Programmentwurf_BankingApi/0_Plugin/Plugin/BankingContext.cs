@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Programmentwurf_BankingApi._3Domain.Aggregates;
-using Programmentwurf_BankingApi._3Domain.Entities;
-using Programmentwurf_BankingApi._3Domain.Value_Objects;
-using Programmentwurf_BankingApi.Domain.Entities;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Threading.Tasks;
+using _3_Domain.Domain.Aggregates;
+using _3_Domain.Domain.Entities;
+using _3_Domain.Domain.Value_Objects;
 
 namespace Programmentwurf_BankingApi.Plugin
 {
-    public class BankingContext : DbContext
+    public class BankingContext : DbContext, IBankingContext
     {
         public BankingContext(DbContextOptions<BankingContext> options) : base(options)
         {
@@ -15,13 +16,31 @@ namespace Programmentwurf_BankingApi.Plugin
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            modelbuilder.Entity<TransactionEntity>().OwnsOne(typeof(TransactionVO), "TransactionInfo");
+            modelbuilder.Entity<TransactionAggregate>().OwnsOne(typeof(TransactionVO), "TransactionInfo");
             modelbuilder.Entity<BankAggregate>().OwnsOne(typeof(BankEntity), "Bank");
             modelbuilder.Entity<BankAggregate>().OwnsOne(typeof(AdressVO), "Adresse");
         }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<KontoEntity> Konten { get; set; }
-        public DbSet<TransactionEntity> Transaction { get; set; }
+        public DbSet<TransactionAggregate> Transaction { get; set; }
         public DbSet<BankAggregate> BankAggregate { get; set; }
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
+        public Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
+        }
+        public EntityEntry Entry(EntityEntry obj)
+        {
+            return base.Entry(obj);
+        } 
+        public override EntityEntry Update(object obj)
+        {
+            var result = base.Update(obj);
+            return result;
+        }
+
     }
 }

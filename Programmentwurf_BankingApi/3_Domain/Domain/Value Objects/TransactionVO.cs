@@ -1,18 +1,25 @@
-﻿namespace Programmentwurf_BankingApi._3Domain.Value_Objects
+﻿using System;
+using Microsoft.VisualBasic;
+
+namespace _3_Domain.Domain.Value_Objects
 {
     public sealed class TransactionVO
     {
-        public TransactionVO(double betrag, int kontoIdSender, int kontoIdEmpfänger)
+        public TransactionVO(DateTime date, double betrag, int kontoIdSender, int kontoIdEmpfänger)
         {
+            Date = date;
             Betrag = betrag;
             KontoIdSender = kontoIdSender;
             KontoIdEmpfänger = kontoIdEmpfänger;
         }
-
-        public int Id { get; set; }
+        public DateTime Date { get; set; }
         public double Betrag { get; set; }
         public int KontoIdSender { get; set; }
         public int KontoIdEmpfänger { get; set; }
+        public DateTime getDate()
+        {
+            return Date;
+        }
 
         public double getBetrag()
         {

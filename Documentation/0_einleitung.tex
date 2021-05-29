@@ -1,0 +1,50 @@
+\chapter{Einleitung}
+In diesem Programmentwurf wurde Finanz/Banking-Anwendung entwickelt. Das projekt besteht aus einem backend und einem Frontend. Für das Backend wurde eine .NET Core WebApi 
+erstellt und für das Frontend ein einfacher Client mit Hilfe von Windows Forms. Der Client dient dazu die Funktionen der API auszuführen und darzustellen. Die WebApi 
+greift auf Anfrage des Clients auf eine InMemory-Datenbank zu und führt auf dieser Operationen aus. Da es sich hier um eine InMemory-Datenbank handelt, die im Speicher der Api läuft, 
+wird die Datenbank resettet, wenn die WebApi gestoppt wird. 
+\newline Das Frontend und das Backend wurden mit der Visual Studio 2019 Community Edition erstellt.
+\newline Um das Testen der WebApi durch den Client zu vereinfachen, wird bei Start des Clients automatisch ein Test-Benutzer angelegt. Die Anmeldedaten für diesen Testnutzer sind:
+\begin{itemize}
+    \item Email: Test@test.com
+    \item Passwort: Passw0rd
+\end{itemize}
+Dieser Benutzer wird als Admin angelegt und kann somit alle Funktionen der Anwendung nutzen. Welche Funktionen nicht genutzt werden können, wird später erklärt.
+\newline Weiterhin werden bei Start 3 Banken auf der Datenbank angelegt, um Konten anlegen zu können, ohne dass eine Bank ausgewählt werden muss.
+\newline Zum eigentlichen Programmentwurf gehört nur die WebApi. Alle Vorgaben für den Programmentwurf wurden in dieser Api umgesetzt und nicht im Client-Projekt. 
+Der Client hilft nur beim Testen der Funktionen der Api.
+\newline Als Admin-Benutzer können im Client neue Banken angelegt werden, die daraufhin jedem anderen benutzer sichtbar sind. Diese Funktion ist nicht für Nicht-Admin-Benutzer 
+verfügbar, da nicht alle Benutzer die Möglichkeit haben sollten, neue Banken einzutragen, da diese daraufhin in den Clients aller Benutzer erscheinen. So wird verhindert, dass 
+normale Benutzer zu viele Banken eintragen, auf denen Konten angelegt werden können oder Dopplungen entstehen.. 
+\section{Installation}
+\subsection{Anforderungen}
+Um die WebApi zu starten wird folgende Software benötigt:
+\begin{itemize}
+    \item .NET SDK 5.0
+    \item Visual Studio 2019 oder Visual Studio Code
+\end{itemize}
+\subsection{Starten der Anwendung mit Visual Studio 2019}
+Um die WebApi in Visual Studio 2019 zu starten, wird die gesamte Projektmappe mit Visual Studio geöffnet. Im Solution-Explorer sind daraufhin folgende Projekte zu sehen:
+\begin{itemize}
+    \item Programmentwurf\_BankingApi
+    \item Programmentwurf\_Banking\_Client
+    \item Programmentwurf\_Mock\_Tests
+    \item Programmentwurf\_xUnit\_Tests
+\end{itemize}
+In \glqq Programmentwurf\_BankingApi \grqq befinden sich die einzelnen Projekte der WebApi. Durch Rechtsklick auf die Solution im Solution-Explorer kann unter \glqq Startprojekte festlegen \grqq 
+ausgewählt werden, welche Projekte durch drücken von F5 gestartet werden sollen. Hier wird für das Projekt \glqq 0\_Plugin \grqq die Option \glqq Starten \grqq ausgewählt. Optional kann auch 
+für das Projekt \glqq Programmentwurf\_Banking\_Client \grqq die Option \glqq Starten \grqq ausgewählt werden, um auch den Client direkt zu starten.
+\subsection{Starten der Anwendung mit Visual Studio Code}
+Um die WebApi in Visual Studio Code zu starten, muss das Projekt \glqq 0\_Plugin \grqq ausgeführt werden. Dafür wird in den Ordner \glqq Programmentwurf\_BankingApi \grqq navigiert und von dort in 
+den Projektordner \glqq 0\_Plugin \grqq . Dort wird über die Terminal-Konsole folgende Befehle ausgeführt:
+\begin{itemize}
+    \item dotnet build
+    \item dotnet run
+\end{itemize}
+Mit \glqq dotnet \grqq build wird versucht die Anwendung zu kompilieren. Dadurch werden auch alle NuGet-Pakete heruntergeladen, die für die Entwicklung des Porgramms genutzt wurden.
+\newline Mit \glqq dotnet run \grqq wird daraufhin die Anwendung gestartet. Wird die Anwendung über Visual Studio Code gestartet, ist sie über den localhost mit Port 5001 erreichbar.
+\subsection{Benutzen der Anwendung}
+Die WebApi kann entweder durch Postman oder den dazugehörigen Client getestet werden. Im GitHub-Repository befindet sich eine postman-Collection die genutzt werden kann um die WebApi mit Postman zu testen.
+\newline Bei Ausführen des Clients wird ein Login-Screen geöffnet. Von diesem aus kann entweder ein neuer Benutzer registriert werden oder es wird der Admin-Benutzer zum einloggen genutzt, dessen Anmeldedaten zuvor schon erwähnt wurden. 
+Daraufhin öffnet sich der Home-Screen von dem aus alle Funktionen erreichbar sind. 
+\newline Es muss beachtet werden, dass jedesmal wenn etwas erstellt oder hinzugefügt wird über den Client, der Aktualisierungs-Button geklickt werden muss, um die Daten im Client zu aktualisieren.

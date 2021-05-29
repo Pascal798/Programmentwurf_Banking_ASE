@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using _1_Adapter.Adapter.Transaction;
+using _3_Domain.Domain.Aggregates;
 using Microsoft.AspNetCore.Mvc;
-using Programmentwurf_BankingApi._3Domain.Others;
-using Programmentwurf_BankingApi.Adapter.Transaction;
-using Programmentwurf_BankingApi.Domain.Entities;
 using Programmentwurf_BankingApi.Plugin.Transaction;
 
 namespace Programmentwurf_BankingApi.Plugin.Controllers
@@ -12,26 +11,21 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private TransactionRepositoryBridge TransactionRepositoryBridge;
+        private TransactionRepositoryImpl _transactionRepositoryImpl;
         private TransactionToTransactionResourceMapper TransactionToTransactionResourceMapper;
 
-        public TransactionController(TransactionRepositoryBridge transactionRepositoryBridge, TransactionToTransactionResourceMapper transactionToTransactionResourceMapper)
+        public TransactionController(TransactionRepositoryImpl transactionRepositoryImpl)
         {
-            TransactionRepositoryBridge = transactionRepositoryBridge;
-            TransactionToTransactionResourceMapper = transactionToTransactionResourceMapper;
+            _transactionRepositoryImpl = transactionRepositoryImpl;
+            TransactionToTransactionResourceMapper = TransactionToTransactionResourceMapper.getInstance();
         }
 
         // GET: api/Transaction/GetTransactions/5
         [HttpGet("[action]/{kontoid}")]
         public async Task<List<TransactionResource>> GetTransactions(int kontoid)
         {
-            var transactions = await TransactionRepositoryBridge.getAllTransactions(kontoid);
-            List<TransactionResource> transactionList = new List<TransactionResource>();
-
-            foreach(var transaction in transactions)
-            {
-                transactionList.Add(TransactionToTransactionResourceMapper.apply(transaction));
-            }
+            var transactions = await _transactionRepositoryImpl.getAllTransactions(kontoid);
+            var transactionList = TransactionToTransactionResourceMapper.convertToTransactionResourceList(transactions);
 
             return transactionList;
         }
@@ -40,7 +34,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("{transactionid}")]
         public async Task<TransactionResource> GetTransactionEntity(int transactionid)
         {
-            var transactionEntity = await TransactionRepositoryBridge.findById(transactionid);
+            var transactionEntity = await _transactionRepositoryImpl.findById(transactionid);
 
             if (transactionEntity == null)
             {
@@ -58,8 +52,14 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPost]
         public IActionResult PostTransactionEntity(TransactionResource transactionEntity)
         {
-            var transaction = new TransactionEntity(transactionEntity.Date, transactionEntity.Betrag, transactionEntity.KontoIdSender, transactionEntity.KontoIdEmpfänger);
-            TransactionRepositoryBridge.create(transaction);
+            var transaction = new TransactionAggregate(
+                transactionEntity.Date, 
+                transactionEntity.Betrag, 
+                transactionEntity.KontoIdSender, 
+                transactionEntity.KontoIdEmpfänger
+                );
+
+            _transactionRepositoryImpl.create(transaction);
 
             return new OkObjectResult("Created");
         }
@@ -68,7 +68,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("[action]/{kontoid}")]
         public async Task<IActionResult> GetTransactionAsMail(int kontoid)
         {
-            return await TransactionRepositoryBridge.getTransactionsAsMail(kontoid);
+            return await _transactionRepositoryImpl.getTransactionsAsMail(kontoid);
         }
     }
 }

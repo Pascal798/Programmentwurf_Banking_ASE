@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _1_Adapter.Adapter.User;
+using _3_Domain.Domain.Domain_Services;
+using _3_Domain.Domain.Others;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Programmentwurf_BankingApi._3Domain.Others;
-using Programmentwurf_BankingApi.Adapter.User;
-using Programmentwurf_BankingApi.Domain.Entities;
 using Programmentwurf_BankingApi.Plugin;
 using Programmentwurf_BankingApi.Plugin.User;
+using _3_Domain.Domain.Entities;
+using _3_Domain.Domain.Repositories;
 
 namespace Programmentwurf_BankingApi.Plugin.Controllers
 {
@@ -17,12 +19,14 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private UserRepositoryBridge UserRepositoryBridge;
+        private UserRepository _userRepositoryImpl;
         private UserToUserResourceMapper UserToUserResourceMapper;
+        private IChangePassword _changePasswordImpl;
 
-        public UserController(UserRepositoryBridge bridge)
+        public UserController(UserRepositoryImpl impl, ChangePasswordImpl pwImpl)
         {
-            UserRepositoryBridge = bridge;
+            _userRepositoryImpl = impl;
+            _changePasswordImpl = pwImpl;
             UserToUserResourceMapper = UserToUserResourceMapper.getInstance();
         }
 
@@ -30,22 +34,16 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet]
         public async Task<List<UserResource>> GetUsers()
         {
-            var users = await UserRepositoryBridge.findAllUsers();
-            List<UserResource> userList = new List<UserResource>();
-            
-            foreach(var user in users)
-            {
-                userList.Add(UserToUserResourceMapper.apply(user));
-            }
-
-            return userList;
+            var users = await _userRepositoryImpl.findAllUsers();
+            var userlist = UserToUserResourceMapper.convertToUserList(users);
+            return userlist;
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
         public async Task<UserResource> GetUserEntity(int id)
         {
-            var userEntity = await UserRepositoryBridge.findById(id);
+            var userEntity = await _userRepositoryImpl.findById(id);
 
             if (userEntity == null)
             {
@@ -62,7 +60,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPut("{id}")]
         public NoContentResult PutUserEntity(UserEntity userEntity)
         {
-            UserRepositoryBridge.update(userEntity);
+            _userRepositoryImpl.update(userEntity);
 
             return NoContent();
         }
@@ -72,7 +70,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPost]
         public CreatedAtActionResult PostUserEntity(UserEntity userEntity)
         {
-            UserRepositoryBridge.create(userEntity);
+            _userRepositoryImpl.create(userEntity);
 
             return CreatedAtAction(nameof(GetUserEntity), new { id = userEntity.Id }, userEntity);
         }
@@ -81,7 +79,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpDelete("{id}")]
         public NoContentResult DeleteUserEntity(int id)
         {
-            UserRepositoryBridge.delete(id);
+            _userRepositoryImpl.delete(id);
 
             return NoContent();
         }
@@ -91,7 +89,15 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPost("[action]")]
         public UserEntity Login(LoginObject loginInfo)
         {
-            return UserRepositoryBridge.login(loginInfo.email, loginInfo.password);
+            return _userRepositoryImpl.login(loginInfo.email, loginInfo.password);
+        }
+
+        // POST: api/User/ChangePassword
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost("[action]")]
+        public async Task<bool> ChangePassword(int userid, string oldpassword, string newpassword)
+        {
+            return await _changePasswordImpl.changePassword(userid, oldpassword, newpassword);
         }
     }
 }

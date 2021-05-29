@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using _1_Adapter.Adapter.Bank;
+using _1_Adapter.Adapter.Konto;
+using _3_Domain.Domain.Aggregates;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Programmentwurf_BankingApi.Plugin;
-using Programmentwurf_BankingApi._3Domain.Aggregates;
-using Programmentwurf_BankingApi._0Plugin.Bank;
-using Programmentwurf_BankingApi._1Adapter.Bank;
-using Programmentwurf_BankingApi.Adapter.Konto;
+using Programmentwurf_BankingApi.Plugin.Bank;
 
 namespace Programmentwurf_BankingApi._0Plugin.Controllers
 {
@@ -17,14 +12,14 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
     [ApiController]
     public class BankController : ControllerBase
     {
-        private BankRepositoryBridge BankRepositoryBridge;
+        private BankRepositoryImpl _bankRepositoryImpl;
         private BankToBankResourceMapper BankToBankResourceMapper;
         private KontoToKontoResourceMapper KontoToKontoResourceMapper;
 
-        public BankController(BankRepositoryBridge bankRepositoryBridge, BankToBankResourceMapper bankToBankResourceMapper)
+        public BankController(BankRepositoryImpl bankRepositoryImpl)
         {
-            BankRepositoryBridge = bankRepositoryBridge;
-            BankToBankResourceMapper = bankToBankResourceMapper;
+            _bankRepositoryImpl = bankRepositoryImpl;
+            BankToBankResourceMapper = BankToBankResourceMapper.getInstance();
             KontoToKontoResourceMapper = KontoToKontoResourceMapper.getInstance();
         }
 
@@ -32,12 +27,8 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
         [HttpGet]
         public async Task<List<BankResource>> GetBankAggregate()
         {
-            var banks = await BankRepositoryBridge.getAllBanks();
-            var list = new List<BankResource>();
-            foreach(var bank in banks)
-            {
-                list.Add(BankToBankResourceMapper.apply(bank));
-            }
+            var banks = await _bankRepositoryImpl.getAllBanks();
+            var list = BankToBankResourceMapper.convertToBankResourceList(banks);
             return list;
         }
 
@@ -45,7 +36,7 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
         [HttpGet("{id}")]
         public async Task<BankResource> GetBankAggregate(int bic)
         {
-            var bankAggregate = await BankRepositoryBridge.findById(bic);
+            var bankAggregate = await _bankRepositoryImpl.findById(bic);
 
             if (bankAggregate == null)
             {
@@ -58,18 +49,24 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
         // POST: api/Bank
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public CreatedAtActionResult PostBankAggregate(BankResource bank)
+        public async Task<CreatedAtActionResult> PostBankAggregate(BankResource bank)
         {
-            BankRepositoryBridge.create(new BankAggregate(bank.Name, bank.BIC, bank.Land, bank.Postleitzahl, bank.Straße));
+            await _bankRepositoryImpl.create(new BankAggregate(
+                bank.Name, 
+                bank.BIC, 
+                bank.Land, 
+                bank.Postleitzahl, 
+                bank.Straße
+                ));
 
             return CreatedAtAction(nameof(GetBankAggregate), new { id = bank.BIC }, bank);
         }
 
         // DELETE: api/Bank/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteBankAggregate(int id)
+        public async Task<IActionResult> DeleteBankAggregate(int id)
         {
-            BankRepositoryBridge.delete(id);
+            await _bankRepositoryImpl.delete(id);
             return NoContent();
         }
 
@@ -77,12 +74,8 @@ namespace Programmentwurf_BankingApi._0Plugin.Controllers
         [HttpGet("[action]/{id}")]
         public async Task<List<KontoResource>> GetKonten(string bic)
         {
-            var konten = await BankRepositoryBridge.getKonten(bic);
-            var list = new List<KontoResource>();
-            foreach(var konto in konten)
-            {
-                list.Add(KontoToKontoResourceMapper.apply(konto));
-            }
+            var konten = await _bankRepositoryImpl.getKonten(bic);
+            var list = KontoToKontoResourceMapper.convertToKontoResourceList(konten);
 
             return list;
         }

@@ -20,7 +20,7 @@ namespace Programmentwurf_Banking_Client
             await BankProcessor.CreateBank("Volksbank Karlsruhe", "GENODE61BTX", "Deutschland", 76131, "KAStraße 1");
             await BankProcessor.CreateBank("Sparkasse Karlsruhe", "GENODE61BTZ", "Deutschland", 76131, "KAStraße 2");
 
-            await UserProcessor.RegisterUser("Test@test.com", "TestUser", "Password");
+            await UserProcessor.RegisterUser("Test@test.com", "TestUser", "Passw0rd", true);
         }
     }
 }

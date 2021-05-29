@@ -1,0 +1,34 @@
+\chapter{Programming Principles}
+\section{SOLID}
+SOLID setzt sich aus folgenden Prinzipien zusammen:
+\begin{itemize}
+    \item S: Single Responsibility Principle
+    \item O: Open Closed Principle
+    \item L: Liskov Substitution Principle
+    \item I: Interface Segregation Principle
+    \item D: Dependency Injection Principle
+\end{itemize}
+Für jedes dieser Prinzipien wird das vorkommen im Code dieses Programmentwurfs analysiert und begründet. Es kann jedoch durchaus vorkommen, dass eines dieser prinzipien nicht im Code auffindbar ist, da es nicht benötigt wurde.
+\subsection{Single Responsibility Principle}
+Das Single Responsibility Principle besagt, dass eine Klasse genau eine zuständigkeit haben sollte. Das bedeutet, dass jede Klasse eine klar definierte Aufgabe hat, wodurch eine niedrige Komplexität des Codes entsteht und eine niedrige Kopplung.
+Durch die niedrige Komplexität des Codes lässt sich dieser auch einfacher warten und erweitern, da er besser verständlich ist.
+\newline Angewendet wurde dieses Prinzip beispielsweise in der Adapter-Schicht. Hier wurde für das konvertieren jedes Objektes eine extra Klasse erstellt. Die Klasse \glqq UserAggregateToUserMapper \grqq ist nur dafür zuständig ein UserAggregate in ein User-Objekt umzuwandeln 
+und nicht für Objekte andere Art zuständig. Nach diesem Prinzip gibt es für jedes Aggregat einen Mapper, der einem Aggregat entweder Eigenschaften, die der Client nicht benötigt oder erhalten sollte, entnimmt oder das Aggregat weniger komplex für den Client macht wie zum Beispiel der \glqq TransactionAggregateToTransactionMapper \grqq.
+\subsection{Open Closed Principle}
+Das Open Closed Principle macht eine Anwendung offen für Erweiterungen aber geschlossen für Änderungen. Das bedeutet, dass der Code nur durch Vererbung oder die Implementierung von interfaces erweitert wird. Dadurch muss bestehender Code nicht geändert werden. Um dies zu unterstützen, ist es von Vorteil viele Abstraktionen zu nutzen.
+\newline In diesem Projekt wird dieses Prinzip vorallem in der Domain-Schicht sichtbar durch die Repository-Interfaces und die Domain Service-Interfaces. Es kann beispielsweise auf einfachste Weise neue Funktionen implementiert werden, indem ein neues Interface erstellt, das die neuen Funktionen nutzt und dieses Interface in der Plugin-Schicht implementiert wird. Daraufhin 
+müssen keine Änderungen an anderen Klassen als dem erstellten Interface und der Klasse die dieses implementiert vorgenommen werden. 
+\subsection{Liskov Substitution Principle}
+Das Liskov Substitution Principle schränkt Ableitungsregeln stark ein, wodurch Invarianzen eingehalten werden. Dabei müssen abgeleitete Typen schwächere Vorbedingungen und stärkere Nachbedingungen besitzen, wodurch in der 
+objektorientierten Programmierung eine \glqq verhält sich wie \grqq Beziehung entsteht. Wenn nun das Verhalten eines Basistypes bekannt ist, kann sich darauf verlassen werden, dass der abgeleitete Typ dieses Verhalten übernimmt.
+\newline Dies ist beispielsweise bei der Implementierung der Repository-Interfaces zu sehen. Diese geben der Implementierung eine \glqq verhält sich wie \grqq Beziehung.
+\subsection{Interface Segregation Principle}
+Das Interface Segregation Principle besagt, dass Klassen, die ein Interface implementieren auch genau die Methoden des Interfaces implementieren, die sie benötigen und keine weiteren unnötigen Methoden. Dies wird umgesetzt, indem anstatt einem großen Interface, mehrere kleine Interfaces mit wenigen Funktionen genutzt.
+Daraufhin werden genau die Interfaces in einer Klasse implementiert, die auch nur genau die Funktionen besitzen, die die klasse beötigt und keine weiteren Funktionen mitbringen, die nicht benötigt werden. 
+\newline Da im Programmentwurf keine Interfaces bestehen, die in einer Klasse eine unnötige Methode implementieren, ist dieses Prinzip erfüllt.
+\subsection{Dependency Injection Principle}
+Durch das Dependency Injection Principle wird die klassische Struktur, in der High-Level Module von Low-Level-modulen abhängig sind umgekehrt. Dies geschieht, da Abstraktionen nicht von Details abhängig sein sollten. High-Level Module werden 
+geben also die Regeln vor und Low-Level Module implementieren diese. Dadurch wird eine hohe Flexibilität der Software erreicht, da Low-level Module einfach ausgetauscht werden können, ohne dass High-Level Module ausgetauscht werden.
+\newline Dieser Programmentwurf setzt dieses Prinzip durch die verwendete Schitenarchitektur der Clean Architecture um. Dabei werden die Klassen, die die Repository-Interfaces und Domain Service-Interfaces implementieren, beim initialen Aufbau der Anwendung instanziiert, wenn sie benötigt werden. 
+In der \glqq Startup.cs \grqq wird festgelegt, welche Klassen instanziiert werden sollen, wenn sie beim Start benötigt werden.
+

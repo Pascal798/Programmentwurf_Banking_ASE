@@ -9,11 +9,11 @@ namespace Programmentwurf_Banking_Client.Models.Konto
     public class KontoModel
     {
         public KontoModel() { }
-        public KontoModel(int id, string bic, double kontostand)
+        public KontoModel(double kontostand, int userId, string bic)
         {
-            Id = id;
-            BIC = bic;
             Kontostand = kontostand;
+            UserId = userId;
+            BIC = bic;
         }
 
         public KontoModel(int id, int userId, string bIC)
@@ -24,8 +24,9 @@ namespace Programmentwurf_Banking_Client.Models.Konto
         }
 
         public int Id { get; set; }
+        public double Kontostand { get; set; }
         public int UserId { get; set; }
         public string BIC { get; set; }
-        public double Kontostand { get; set; }
+        
     }
 }

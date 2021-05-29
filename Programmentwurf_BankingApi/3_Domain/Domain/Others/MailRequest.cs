@@ -1,4 +1,4 @@
-﻿namespace Programmentwurf_BankingApi._3Domain.Others
+﻿namespace _3_Domain.Domain.Others
 {
     public class MailRequest
     {

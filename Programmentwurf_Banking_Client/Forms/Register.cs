@@ -22,10 +22,14 @@ namespace Programmentwurf_Banking_Client.Forms
         {
             var response = await UserProcessor.RegisterUser(EmailBox.Text, NameBox.Text, PasswordBox.Text);
 
-            if(response.ToString() == "Created")
+            if(response != null)
             {
-                var msgBox = MessageBox.Show("User created");
+                var msgBox = MessageBox.Show("User created: " + response.Name);
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error while creating user");
             }
         }
     }

@@ -1,16 +1,13 @@
-﻿using Programmentwurf_BankingApi._3Domain.Aggregates;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using _3_Domain.Domain.Aggregates;
 
-namespace Programmentwurf_BankingApi._3Domain.Repositories
+namespace _3_Domain.Domain.Repositories
 {
     public interface BankRepository
     {
-        void create(BankAggregate bank);
-        void delete(int bankid);
+        Task<bool> create(BankAggregate bank);
+        Task<bool> delete(int bankid);
         Task<List<BankAggregate>> getAllBanks();
         Task<BankAggregate> findById(int bankid);
     }

@@ -1,8 +1,11 @@
 ﻿
+using Programmentwurf_Banking_Client.Models;
+
 namespace Programmentwurf_Banking_Client.Forms
 {
     partial class BankOverview
     {
+        private UserModel User;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -29,6 +32,7 @@ namespace Programmentwurf_Banking_Client.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            User = (UserModel) Cache.cache.Get("User");
             this.AmountLabel = new System.Windows.Forms.Label();
             this.BankGridView = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,13 +60,22 @@ namespace Programmentwurf_Banking_Client.Forms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(13, 239);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Neue Bank...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            if (User.IsAdmin)
+            {
+                this.button1.Location = new System.Drawing.Point(13, 239);
+                this.button1.Name = "button1";
+                this.button1.Size = new System.Drawing.Size(96, 23);
+                this.button1.TabIndex = 2;
+                this.button1.Text = "Neue Bank...";
+                this.button1.UseVisualStyleBackColor = true;
+                this.button1.Click += new System.EventHandler(this.button1_Click);
+            }
+            else
+            {
+                this.button1.Visible = false;
+            }
+
+
             // 
             // ReloadBtn
             // 

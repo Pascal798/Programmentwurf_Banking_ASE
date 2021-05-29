@@ -28,3 +28,6 @@ C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_A
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\1_Adapter\obj\Debug\net5.0\1_Adapter.dll
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\1_Adapter\obj\Debug\net5.0\ref\1_Adapter.dll
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\1_Adapter\obj\Debug\net5.0\1_Adapter.pdb
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\1_Adapter\bin\Debug\net5.0\1_Adapter.runtimeconfig.json
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\1_Adapter\bin\Debug\net5.0\1_Adapter.runtimeconfig.dev.json
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\1_Adapter\obj\Debug\net5.0\1_Adapter.genruntimeconfig.cache

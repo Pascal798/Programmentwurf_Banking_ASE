@@ -1,8 +1,8 @@
-﻿using Programmentwurf_BankingApi.Domain.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using _3_Domain.Domain.Entities;
 
-namespace Programmentwurf_BankingApi.Domain.Repositories
+namespace _3_Domain.Domain.Repositories
 {
     public interface KontoRepository
     {

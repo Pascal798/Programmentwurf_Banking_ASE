@@ -1,15 +1,10 @@
-﻿using MailKit.Net.Smtp;
+﻿using System.Threading.Tasks;
+using _3_Domain.Domain.Others.Email;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Threading.Tasks;
 
-namespace Programmentwurf_BankingApi._3Domain.Others
+namespace _3_Domain.Domain.Others
 {
     public class MailService : IMailService
     {
@@ -21,22 +16,20 @@ namespace Programmentwurf_BankingApi._3Domain.Others
 
         public async Task SendEmailAsync(MailRequest mailRequest)
         {
-            var email = new MimeMessage();
-            email.Sender = MailboxAddress.Parse(_mailSettings.Mail);
+            var email = new MimeMessage {Sender = MailboxAddress.Parse(_mailSettings.Mail)};
             email.To.Add(MailboxAddress.Parse(mailRequest.ToEmail));
             email.Subject = mailRequest.Subject;
-            var builder = new BodyBuilder();
-            builder.HtmlBody = mailRequest.Body;
+            var builder = new BodyBuilder {HtmlBody = mailRequest.Body};
             email.Body = builder.ToMessageBody();
             var smtp = new MailKit.Net.Smtp.SmtpClient();
-            smtp.Connect(
+            await smtp.ConnectAsync(
                 _mailSettings.Host, 
                 _mailSettings.Port, 
                 SecureSocketOptions.SslOnConnect
-                );
-            smtp.Authenticate(_mailSettings.Mail, _mailSettings.Password);
+            );
+            await smtp.AuthenticateAsync(_mailSettings.Mail, _mailSettings.Password);
             await smtp.SendAsync(email);
-            smtp.Disconnect(true);
+            await smtp.DisconnectAsync(true);
         }
     }
 }

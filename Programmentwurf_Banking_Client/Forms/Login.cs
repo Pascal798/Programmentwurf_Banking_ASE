@@ -42,11 +42,13 @@ namespace Programmentwurf_Banking_Client
 
                 var home = new Home();
                 home.Show();
+                
             }
             else
             {
                 MessageBox.Show("Wrong credentials");
             }
+            
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)

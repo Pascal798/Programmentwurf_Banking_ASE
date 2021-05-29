@@ -22,3 +22,6 @@ C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_A
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\3_Domain\obj\Debug\net5.0\3_Domain.dll
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\3_Domain\obj\Debug\net5.0\ref\3_Domain.dll
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\3_Domain\obj\Debug\net5.0\3_Domain.pdb
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\3_Domain\bin\Debug\net5.0\3_Domain.runtimeconfig.json
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\3_Domain\bin\Debug\net5.0\3_Domain.runtimeconfig.dev.json
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\3_Domain\obj\Debug\net5.0\3_Domain.genruntimeconfig.cache

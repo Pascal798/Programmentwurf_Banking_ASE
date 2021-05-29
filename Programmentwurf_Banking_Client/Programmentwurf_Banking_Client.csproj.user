@@ -4,6 +4,9 @@
     <Compile Update="Forms\BankOverview.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\CreateBank.cs">
       <SubType>Form</SubType>
     </Compile>

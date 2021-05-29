@@ -1,10 +1,7 @@
-﻿using Programmentwurf_BankingApi.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using _3_Domain.Domain.Entities;
 
-namespace Programmentwurf_BankingApi.Adapter.Konto
+namespace _1_Adapter.Adapter.Konto
 {
     public class KontoToKontoResourceMapper
     {
@@ -26,9 +23,17 @@ namespace Programmentwurf_BankingApi.Adapter.Konto
         {
             return new KontoResource(
                 konto.Id,
-                konto.UserId,
-                konto.BIC
-                );
+                konto.UserId
+            );
+        }
+        public List<KontoResource> convertToKontoResourceList(List<KontoEntity> kontoEntities)
+        {
+            var kontolist = new List<KontoResource>();
+            foreach (var kontoEntity in kontoEntities)
+            {
+                kontolist.Add(new KontoResource(kontoEntity.Id, kontoEntity.UserId));
+            }
+            return kontolist;
         }
     }
 }

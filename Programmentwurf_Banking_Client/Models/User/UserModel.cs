@@ -23,9 +23,18 @@ namespace Programmentwurf_Banking_Client.Models
             Password = password;
         }
 
+        public UserModel(string email, string name, string password, bool isAdmin)
+        {
+            Email = email;
+            Name = name;
+            Password = password;
+            IsAdmin = isAdmin;
+        }
+
         public int Id { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

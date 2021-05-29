@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Programmentwurf_BankingApi.Adapter.User
+﻿namespace _1_Adapter.Adapter.User
 {
     public class UserResource
     {

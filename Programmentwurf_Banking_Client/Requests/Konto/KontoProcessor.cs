@@ -76,7 +76,7 @@ namespace Programmentwurf_Banking_Client.Requests.Konto
         {
             string url = "https://localhost:44362/api/Konto/" + userid;
 
-            var konto = new KontoModel(userid, bic, kontostand);
+            var konto = new KontoModel(kontostand, userid, bic);
             var json = JsonConvert.SerializeObject(konto);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 

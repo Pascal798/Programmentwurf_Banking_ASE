@@ -58,3 +58,8 @@ C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_A
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.CreateKonto.resources
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.TransactionOverview.resources
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.CreateTransaction.resources
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\xunit.abstractions.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\xunit.assert.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\xunit.core.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\bin\Debug\net5.0-windows\xunit.execution.dotnet.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_Banking_Client\obj\Debug\net5.0-windows\Programmentwurf_Banking_Client.Forms.ChangePassword.resources

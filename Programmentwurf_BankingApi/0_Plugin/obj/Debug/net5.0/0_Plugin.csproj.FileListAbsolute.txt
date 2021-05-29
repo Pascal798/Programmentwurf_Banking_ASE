@@ -124,3 +124,7 @@ C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_A
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\0_Plugin\obj\Debug\net5.0\ref\0_Plugin.dll
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\0_Plugin\obj\Debug\net5.0\0_Plugin.pdb
 C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\0_Plugin\obj\Debug\net5.0\0_Plugin.genruntimeconfig.cache
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\0_Plugin\bin\Debug\net5.0\xunit.abstractions.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\0_Plugin\bin\Debug\net5.0\xunit.assert.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\0_Plugin\bin\Debug\net5.0\xunit.core.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\Programmentwurf_BankingApi\0_Plugin\bin\Debug\net5.0\xunit.execution.dotnet.dll

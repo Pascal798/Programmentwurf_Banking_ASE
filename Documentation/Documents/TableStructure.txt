@@ -1,0 +1,7 @@
+-User (Authentifizierung)
+-Externe Authentifizierung (OAuth)
+-User-History
+-User Watchlist
+-Anime (Publisher, Erscheinungsjahr, ...)
+-Genre
+-Aktuelle Recommendations

@@ -14,7 +14,7 @@ namespace Programmentwurf_Banking_Client.Requests.Bank
 {
     public static class BankProcessor
     {
-        public async static Task<List<BankModel>> GetBanks()
+        public static async Task<List<BankModel>> GetBanks()
         {
             string url = "https://localhost:44362/api/Bank/";
 
@@ -34,7 +34,7 @@ namespace Programmentwurf_Banking_Client.Requests.Bank
             }
         }
 
-        public async static Task<IActionResult> CreateBank(string name, string bic, string land, int plz, string straße)
+        public static async Task<IActionResult> CreateBank(string name, string bic, string land, int plz, string straße)
         {
             string url = "https://localhost:44362/api/Bank";
 
@@ -42,17 +42,15 @@ namespace Programmentwurf_Banking_Client.Requests.Bank
             var json = JsonConvert.SerializeObject(konto);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            using (HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync(url, content))
+            using HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync(url, content);
+            if (response.IsSuccessStatusCode)
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadAsAsync<CreatedAtActionResult>();
-                    return result;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
+                var result = await response.Content.ReadAsAsync<CreatedAtActionResult>();
+                return result;
+            }
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
             }
         }
     }

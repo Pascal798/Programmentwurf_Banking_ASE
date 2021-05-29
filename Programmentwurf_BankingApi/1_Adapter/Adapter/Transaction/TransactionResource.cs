@@ -1,11 +1,6 @@
-﻿using Programmentwurf_BankingApi._3Domain.Value_Objects;
-using Programmentwurf_BankingApi.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace Programmentwurf_BankingApi.Adapter.Transaction
+namespace _1_Adapter.Adapter.Transaction
 {
     public class TransactionResource
     {
