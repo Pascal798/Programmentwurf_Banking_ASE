@@ -10,7 +10,7 @@ namespace Programmentwurf_BankingApi_xUnit_Tests.Plugin
     public class UserRepositoryBridgeTests
     {
         [Fact]
-        public void CreateUserTest()
+        public async void CreateUserTest()
         {
             var options = new DbContextOptionsBuilder<BankingContext>()
                 .UseInMemoryDatabase(databaseName: "CreateUserTest")
@@ -22,7 +22,7 @@ namespace Programmentwurf_BankingApi_xUnit_Tests.Plugin
 
             var query = new UserRepositoryImpl(context);
 
-            query.kontoErstellen(user);
+            await query.registrieren(user);
             var result = context.Users.Find(user.Id);
 
             Assert.Equal(user.Id, result.Id);
