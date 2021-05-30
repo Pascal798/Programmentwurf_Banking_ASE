@@ -13,7 +13,7 @@ namespace Programmentwurf_BankingApi.Adapter.Transaction.Tests
         {
             var transactions = CreateTransactions();
             var transactionArray = transactions.ToArray();
-            var transactionlist = TransactionToTransactionResourceMapper.getInstance().convertToTransactionResourceList(transactions).ToArray();
+            var transactionlist = TransactionMapper.getInstance().convertToTransactionResourceList(transactions).ToArray();
 
             for (int i = 0; i < transactionArray.Length; i++)
             {
@@ -37,7 +37,7 @@ namespace Programmentwurf_BankingApi.Adapter.Transaction.Tests
         public void applyTest()
         {
             var transaction = new TransactionAggregate(DateTime.Now, 5.50, 1, 2);
-            var transactionResource = TransactionToTransactionResourceMapper.getInstance().apply(transaction);
+            var transactionResource = TransactionMapper.getInstance().apply(transaction);
 
             Assert.Equal(transaction.TransactionInfo.getDate(), transactionResource.Date);
             Assert.Equal(transaction.TransactionInfo.getBetrag(), transactionResource.Betrag);

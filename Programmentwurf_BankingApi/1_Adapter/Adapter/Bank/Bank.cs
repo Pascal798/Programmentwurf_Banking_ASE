@@ -1,8 +1,8 @@
 ﻿namespace _1_Adapter.Adapter.Bank
 {
-    public class BankResource
+    public class Bank
     {
-        public BankResource(string name, string bic, string land, int postleitzahl, string straße)
+        public Bank(string name, string bic, string land, int postleitzahl, string straße)
         {
             Name = name;
             BIC = bic;

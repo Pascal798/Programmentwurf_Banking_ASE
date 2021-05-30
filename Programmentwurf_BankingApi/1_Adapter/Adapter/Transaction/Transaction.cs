@@ -2,16 +2,16 @@
 
 namespace _1_Adapter.Adapter.Transaction
 {
-    public class TransactionResource
+    public class Transaction
     {
-        public TransactionResource(DateTime date, double betrag, int kontoidsender, int kontoidempfänger)
+        public Transaction(DateTime date, double betrag, int kontoidsender, int kontoidempfänger)
         {
             Date = date;
             Betrag = betrag;
             KontoIdSender = kontoidsender;
             KontoIdEmpfänger = kontoidempfänger;
         }
-        public TransactionResource()
+        public Transaction()
         {
 
         }

@@ -12,20 +12,20 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     public class KontoController : ControllerBase
     {
         private KontoRepositoryImpl _kontoRepositoryImpl;
-        private KontoToKontoResourceMapper KontoToKontoResourceMapper;
+        private KontoMapper _kontoMapper;
 
         public KontoController(KontoRepositoryImpl kontoRepositoryImpl)
         {
             _kontoRepositoryImpl = kontoRepositoryImpl;
-            KontoToKontoResourceMapper = KontoToKontoResourceMapper.getInstance();
+            _kontoMapper = KontoMapper.getInstance();
         }
 
         // GET: api/Konto
         [HttpGet]
-        public async Task<List<KontoResource>> GetKonten()
+        public async Task<List<UserKonto>> GetKonten()
         {
             var konten = await _kontoRepositoryImpl.findAllKonten();
-            var kontolist = KontoToKontoResourceMapper.convertToKontoResourceList(konten);
+            var kontolist = _kontoMapper.convertToKontoResourceList(konten);
 
             return kontolist;
         }
@@ -41,7 +41,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
 
         // GET: api/Konto/5
         [HttpGet("{kontoid}")]
-        public async Task<KontoResource> GetKontoEntity(int kontoid)
+        public async Task<UserKonto> GetKontoEntity(int kontoid)
         {
             var kontoEntity = await _kontoRepositoryImpl.findById(kontoid);
 
@@ -51,7 +51,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
                 return null;
             }
 
-            var kontoResource = KontoToKontoResourceMapper.apply(kontoEntity);
+            var kontoResource = _kontoMapper.apply(kontoEntity);
 
             return kontoResource;
         }
@@ -59,33 +59,46 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         // PUT: api/Konto/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{kontoid}/{betrag}")]
-        public IActionResult PutKontoEntity(int kontoid, double betrag)
+        public async Task<IActionResult> PutKontoEntity(int kontoid, double betrag)
         {
-            _kontoRepositoryImpl.updateKontostand(kontoid, betrag);
+            var response = await  _kontoRepositoryImpl.kontostandÄndern(kontoid, betrag);
+            if (response)
+            {
+                return new OkResult();
+            }
 
-            return new OkObjectResult("Updated");
+            return NoContent();
         }
 
         // POST: api/Konto
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{userid}")]
-        public CreatedAtActionResult PostKontoEntity(KontoEntity konto, int userid)
+        public async Task<IActionResult> PostKontoEntity(KontoEntity konto, int userid)
         {
             konto.UserId = userid;
-            _kontoRepositoryImpl.create(konto);
+            var response = await _kontoRepositoryImpl.kontoErstellen(konto);
 
-            return CreatedAtAction(
-                nameof(GetKontoEntity), 
-                new { kontoid = konto.Id }, 
-                konto);
+            if (response)
+            {
+                return CreatedAtAction(
+                    nameof(GetKontoEntity),
+                    new { kontoid = konto.Id },
+                    konto);
+            }
+
+            return NoContent();
         }
 
         // DELETE: api/Konto/5
         [HttpDelete("{kontoid}")]
-        public NoContentResult DeleteKontoEntity(int kontoid)
+        public async Task<IActionResult> DeleteKontoEntity(int kontoid)
         {
-            _kontoRepositoryImpl.delete(kontoid);
+            var response  = await _kontoRepositoryImpl.kontoLöschen(kontoid);
 
+            if (response)
+            {
+                return new OkResult();
+            }
             return NoContent();
         }
     }

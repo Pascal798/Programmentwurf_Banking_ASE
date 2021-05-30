@@ -12,27 +12,27 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     public class TransactionController : ControllerBase
     {
         private TransactionRepositoryImpl _transactionRepositoryImpl;
-        private TransactionToTransactionResourceMapper TransactionToTransactionResourceMapper;
+        private TransactionMapper _transactionMapper;
 
         public TransactionController(TransactionRepositoryImpl transactionRepositoryImpl)
         {
             _transactionRepositoryImpl = transactionRepositoryImpl;
-            TransactionToTransactionResourceMapper = TransactionToTransactionResourceMapper.getInstance();
+            _transactionMapper = TransactionMapper.getInstance();
         }
 
         // GET: api/Transaction/GetTransactions/5
         [HttpGet("[action]/{kontoid}")]
-        public async Task<List<TransactionResource>> GetTransactions(int kontoid)
+        public async Task<List<_1_Adapter.Adapter.Transaction.Transaction>> GetTransactions(int kontoid)
         {
             var transactions = await _transactionRepositoryImpl.getAllTransactions(kontoid);
-            var transactionList = TransactionToTransactionResourceMapper.convertToTransactionResourceList(transactions);
+            var transactionList = _transactionMapper.convertToTransactionResourceList(transactions);
 
             return transactionList;
         }
 
         // GET: api/Transaction/5
         [HttpGet("{transactionid}")]
-        public async Task<TransactionResource> GetTransactionEntity(int transactionid)
+        public async Task<_1_Adapter.Adapter.Transaction.Transaction> GetTransactionEntity(int transactionid)
         {
             var transactionEntity = await _transactionRepositoryImpl.findById(transactionid);
 
@@ -42,7 +42,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
                 return null;
             }
 
-            var transactionResource = TransactionToTransactionResourceMapper.apply(transactionEntity);
+            var transactionResource = _transactionMapper.apply(transactionEntity);
 
             return transactionResource;
         }
@@ -50,7 +50,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         // POST: api/Transaction
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public IActionResult PostTransactionEntity(TransactionResource transactionEntity)
+        public async Task<IActionResult> PostTransactionEntity(_1_Adapter.Adapter.Transaction.Transaction transactionEntity)
         {
             var transaction = new TransactionAggregate(
                 transactionEntity.Date, 
@@ -59,9 +59,14 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
                 transactionEntity.KontoIdEmpfänger
                 );
 
-            _transactionRepositoryImpl.create(transaction);
+            var response = await _transactionRepositoryImpl.überweisen(transaction);
+            if (response)
+            {
+                return new OkResult();
+            }
 
-            return new OkObjectResult("Created");
+            return NoContent();
+
         }
 
         // GET: api/Transaction/

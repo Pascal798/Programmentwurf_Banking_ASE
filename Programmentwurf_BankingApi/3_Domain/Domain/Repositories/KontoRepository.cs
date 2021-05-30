@@ -8,9 +8,9 @@ namespace _3_Domain.Domain.Repositories
     {
         Task<List<KontoEntity>> findAllKonten();
         List<KontoEntity> getAllKontenFromUser(int userid);
-        void create(KontoEntity konto);
-        void updateKontostand(int id, double betrag);
-        void delete(int kontonummer);
+        Task<bool> kontoErstellen(KontoEntity konto);
+        Task<bool> kontostandÄndern(int id, double betrag);
+        Task<bool> kontoLöschen(int kontonummer);
         Task<KontoEntity> findById(int kontoid);
     }
 }

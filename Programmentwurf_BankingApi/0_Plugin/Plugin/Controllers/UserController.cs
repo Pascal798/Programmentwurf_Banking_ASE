@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using _1_Adapter.Adapter.User;
 using _3_Domain.Domain.Domain_Services;
-using _3_Domain.Domain.Others;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Programmentwurf_BankingApi.Plugin;
 using Programmentwurf_BankingApi.Plugin.User;
 using _3_Domain.Domain.Entities;
 using _3_Domain.Domain.Repositories;
@@ -20,28 +14,28 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     public class UserController : ControllerBase
     {
         private UserRepository _userRepositoryImpl;
-        private UserToUserResourceMapper UserToUserResourceMapper;
+        private UserMapper _userMapper;
         private IChangePassword _changePasswordImpl;
 
         public UserController(UserRepositoryImpl impl, ChangePasswordImpl pwImpl)
         {
             _userRepositoryImpl = impl;
             _changePasswordImpl = pwImpl;
-            UserToUserResourceMapper = UserToUserResourceMapper.getInstance();
+            _userMapper = UserMapper.getInstance();
         }
 
         // GET: api/User
         [HttpGet]
-        public async Task<List<UserResource>> GetUsers()
+        public async Task<List<_1_Adapter.Adapter.User.User>> GetUsers()
         {
             var users = await _userRepositoryImpl.findAllUsers();
-            var userlist = UserToUserResourceMapper.convertToUserList(users);
+            var userlist = _userMapper.convertToUserList(users);
             return userlist;
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<UserResource> GetUserEntity(int id)
+        public async Task<_1_Adapter.Adapter.User.User> GetUserEntity(int id)
         {
             var userEntity = await _userRepositoryImpl.findById(id);
 
@@ -50,7 +44,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
                 System.Console.WriteLine("User not found");
             }
 
-            var userResource = UserToUserResourceMapper.apply(userEntity);
+            var userResource = _userMapper.apply(userEntity);
 
             return userResource;
         }
@@ -58,9 +52,14 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public NoContentResult PutUserEntity(UserEntity userEntity)
+        public async Task<IActionResult> PutUserEntity(UserEntity userEntity)
         {
-            _userRepositoryImpl.update(userEntity);
+            var response = await _userRepositoryImpl.update(userEntity);
+
+            if (response)
+            {
+                return new OkResult();
+            }
 
             return NoContent();
         }
@@ -68,19 +67,27 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public CreatedAtActionResult PostUserEntity(UserEntity userEntity)
+        public async Task<IActionResult> PostUserEntity(UserEntity userEntity)
         {
-            _userRepositoryImpl.create(userEntity);
+            var response = await _userRepositoryImpl.registrieren(userEntity);
 
-            return CreatedAtAction(nameof(GetUserEntity), new { id = userEntity.Id }, userEntity);
+            if (response)
+            {
+                return CreatedAtAction(nameof(GetUserEntity), new { id = userEntity.Id }, userEntity);
+            }
+
+            return NoContent();
         }
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public NoContentResult DeleteUserEntity(int id)
+        public async Task<IActionResult> DeleteUserEntity(int id)
         {
-            _userRepositoryImpl.delete(id);
-
+            var response = await _userRepositoryImpl.delete(id);
+            if (response)
+            {
+                return new OkResult();
+            }
             return NoContent();
         }
 

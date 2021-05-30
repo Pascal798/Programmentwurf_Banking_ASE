@@ -12,7 +12,7 @@ namespace Programmentwurf_BankingApi.Adapter.User.Tests
         {
             var users = CreateUsers();
             var usersArray = users.ToArray();
-            var userlist = UserToUserResourceMapper.getInstance().convertToUserList(users).ToArray();
+            var userlist = UserMapper.getInstance().convertToUserList(users).ToArray();
             
 
             for(int i = 0; i < usersArray.Length; i++)
@@ -37,7 +37,7 @@ namespace Programmentwurf_BankingApi.Adapter.User.Tests
         public void applyTest()
         {
             var user = new UserEntity(1, "Test@test.com", "Test", "Passw0rd");
-            var userResource = UserToUserResourceMapper.getInstance().apply(user);
+            var userResource = UserMapper.getInstance().apply(user);
 
             Assert.Equal(user.Id, userResource.Id);
             Assert.Equal(user.Name, userResource.Name);

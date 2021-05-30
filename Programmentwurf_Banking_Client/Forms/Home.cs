@@ -77,6 +77,7 @@ namespace Programmentwurf_Banking_Client.Forms
         {
             Konten = await KontoProcessor.GetKonten(User.Id);
             KontoGridView.DataSource = Konten;
+            KontozahlLabel.Text = "Konten: " + Konten.Count;
         }
 
         private void SeeTransactionsBtn_Click(object sender, EventArgs e)

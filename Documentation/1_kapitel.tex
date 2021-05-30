@@ -1,5 +1,22 @@
 \chapter{Domain Driven Design}
 \section{Ubiquitous Language}
+In \ref{table} wird die Ubiquitous Language der Domäne analysiert.
+\begin{table}[]
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Wort} & \textbf{Bedeutung} \\ \hline
+    User & Ein User stellt eine Person dar, die ihre Konten verwalten möchte \\ \hline
+    Konto & Ein Konto stellt eine Einheit dar, auf der Geld gespeichert wird \\ \hline
+    Transaktion & \begin{tabular}[c]{@{}l@{}}Eine Transaktion ist ein Auftrag, der von einem Konto ausgeht \\ oder dieses betrifft. \\ Dies stellt beispielsweise eine Überweisung dar\end{tabular} \\ \hline
+    Bank & \begin{tabular}[c]{@{}l@{}}Eine Bank ist ein Institu, das Konten von Personen hält und für diese \\ Personen Transaktionen ausführt\end{tabular} \\ \hline
+    Anmelden / Login & Ein bereits registrierter User meldet sich an einem System an \\ \hline
+    Registrieren & Eine Person erstellt sich einen User in einem System \\ \hline
+    Adresse & \begin{tabular}[c]{@{}l@{}}Durch eine Adresse kann eindeutig identifiziert werden, \\ wo sich in dieser Domäne eine Bank befindet oder ein User lebt\end{tabular} \\ \hline
+    Kontostand ändern & \begin{tabular}[c]{@{}l@{}}Das Geld, das auf einem Konto gespeichert ist, \\ wird entweder erhöht oder verringert\end{tabular} \\ \hline
+    überweisen & \begin{tabular}[c]{@{}l@{}}Beim Überweisen wird eine transaktion erstellt, \\ die Geld von einem Konto auf ein anderes\\ überträgt\end{tabular} \\ \hline
+    \end{tabular}
+    \label{table}
+\end{table}
 \section{Analyse und Begründung der verwendeten muster des DDD}
 \subsection{Value Objects (VO)}
 Value Objects oder auch Wertobjekte sind Objekte, die unveränderbar sind. Diese werden einmal erstellt und sind daraufhin nichtmehr änderbar, da sie spezielle Werte repräsentieren. Sie besitzen keine Methoden, da sie nur auf ihre Werte reduziert werden.
@@ -36,20 +53,19 @@ Entitäten beschreiben.
     \caption{\label{kontoEntity} KontoEntity}
 \end{figure}
 \subsection{Aggregates}
-Aggregate gruppieren Entities und Value Objects zu gemeinsam verwalteten Einheiten. Auch wenn ein Aggregat nur aus einer Entity bestehen würde, wird dafür ein Aggregat angelegt. 
+Aggregate gruppieren Entities und Value Objects zu gemeinsam verwalteten Einheiten.
 Aggregate helfen dabei die Komplexität der Beziehungen zwischen Objekten zu reduzieren. Die Entity im Aggregat dient als Aggregate Root Entity.
-\newline In diesem Projekt wurde neben den Aggregaten für die einzelnen Entitäten auch ein Aggregat erstellt, das das Value Object für eine Transaktion hält. Folgende Aggregate sind 
+\newline Folgende Aggregate sind 
 erstellt worden:
 \begin{itemize}
-    \item UserAggregate
-    \item KontoAggregate
     \item BankAggregate
     \item TransactionAggregate
 \end{itemize}
 Eine außenstehende Klasse muss eine Methode der Aggregate Root Entity aufrufen, sollte der innere Zustand geändert werden sollen. Dadurch wird sichergestellt, dass der Zustand immer den Domänenregeln entspricht.
-\newline UserAggregate und KontoAggregate bestehen nur aus den Entitäten für den User und das Konto. Das BankAggregate fasst die BankEntity und die dazugehörige Adresse zusammen. Das TransactionAggregate hält das Value Object 
-für die Transaktioninfos und gibt jeder Transaktion eine Id. Hier könnte für die Transaktion noch eine TransactionEntity angelegt werden, diese würde allerdings nur die Id der transaktion halten, weshalb sich dagegen entschieden wurde eine TransactionEntity zu erstellen. 
-Weitere Informationen in der TransactionEntity zu halten macht keinen Sinn, da diese nicht änderbar sein sollen und deshalb in einem Value Object gehalten werden.
+\newline Das BankAggregate fasst die BankEntity und die dazugehörige Adresse zusammen. Das TransactionAggregate hält das Value Object 
+für die Transaktioninfos und gibt jeder Transaktion eine Id. Hier könnte für die Transaktion noch eine TransactionEntity angelegt werden, diese würde allerdings nur die Id der Transaktion halten, weshalb sich dagegen entschieden wurde eine TransactionEntity zu erstellen. 
+Weitere Informationen in der TransactionEntity zu halten macht keinen Sinn, da diese nicht änderbar sein sollen und deshalb in einem Value Object gehalten werden. Der Vollständigkeit halber sollte auch für die übrigen Entities wie UserEntity und KontoEntity ein Aggregat erstellt werden, die nur die jeweilige Entity besitzen. 
+Darauf wurde jedoch verzichtet, um die Übersichtlichkeit des Projektes zu verbessern. Es kam öfters zu Verwirrungen, da bei der Benutzung des Entity Frameworks und der InMemory-Datenbank auch das Aggregat eine Id benötigt, um es zu speichern.
 \newline In \ref{bankAgg} wird ein Ausschnitt aus dem BankAggregate gezeigt:
 \begin{figure}[htbp]
     \centering

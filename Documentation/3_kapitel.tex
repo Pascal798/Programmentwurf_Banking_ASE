@@ -26,9 +26,89 @@ objektorientierten Programmierung eine \glqq verhält sich wie \grqq Beziehung e
 Das Interface Segregation Principle besagt, dass Klassen, die ein Interface implementieren auch genau die Methoden des Interfaces implementieren, die sie benötigen und keine weiteren unnötigen Methoden. Dies wird umgesetzt, indem anstatt einem großen Interface, mehrere kleine Interfaces mit wenigen Funktionen genutzt.
 Daraufhin werden genau die Interfaces in einer Klasse implementiert, die auch nur genau die Funktionen besitzen, die die klasse beötigt und keine weiteren Funktionen mitbringen, die nicht benötigt werden. 
 \newline Da im Programmentwurf keine Interfaces bestehen, die in einer Klasse eine unnötige Methode implementieren, ist dieses Prinzip erfüllt.
-\subsection{Dependency Injection Principle}
-Durch das Dependency Injection Principle wird die klassische Struktur, in der High-Level Module von Low-Level-modulen abhängig sind umgekehrt. Dies geschieht, da Abstraktionen nicht von Details abhängig sein sollten. High-Level Module werden 
+\subsection{Dependency Inversion Principle}
+Durch das Dependency Inversion Principle wird die klassische Struktur, in der High-Level Module von Low-Level-modulen abhängig sind umgekehrt. Dies geschieht, da Abstraktionen nicht von Details abhängig sein sollten. High-Level Module  
 geben also die Regeln vor und Low-Level Module implementieren diese. Dadurch wird eine hohe Flexibilität der Software erreicht, da Low-level Module einfach ausgetauscht werden können, ohne dass High-Level Module ausgetauscht werden.
-\newline Dieser Programmentwurf setzt dieses Prinzip durch die verwendete Schitenarchitektur der Clean Architecture um. Dabei werden die Klassen, die die Repository-Interfaces und Domain Service-Interfaces implementieren, beim initialen Aufbau der Anwendung instanziiert, wenn sie benötigt werden. 
-In der \glqq Startup.cs \grqq wird festgelegt, welche Klassen instanziiert werden sollen, wenn sie beim Start benötigt werden.
+\newline Dieser Programmentwurf setzt dieses Prinzip durch die verwendete Schitenarchitektur der Clean Architecture um. Dabei werden die Repository- und Domain Service-Interfaces aus der High Level Domain-Schicht in den äußeren Low Level-Modulen implementiert und aufgerufen. 
 
+\section{GRASP}
+Grasp steht für General Responsibility Assignment Software Patterns. Diese beschreiben Basispattern, auf denen ein Entwurfsmuster aufbaut. Das Ziel dieses Prinzips ist es, die Low Representational Gap möglichst klein zu halten, was bedeutet, dass die Lücke zwischen dem 
+gedachten Domänenmodell und der eigentichen Softwareimplementierung möglichst klein gehalten wird.
+\subsection{Low Coupling}
+Die Klassenkopplung ist ein Maß, das angibt, wie viele Klassen eine einzelne Klasse verwendet. Es wird versucht eine möglichst geringe Kopplung zu erreichen, wodurch eine geringere Abhängigkeit von Änderungen in anderen Teilen des Codes entsteht. 
+Dies macht den Code außerdem einfacher zu testen und wiederverwendbar. Eine niedrige Kopplung macht den Code auch einfacher verständlich, da weniger Wissen über andere Klassen benötigt wird. Eine lose Kopplung macht Komponenten austauschbarer.
+\newline Kopplung entsteht beispielsweise durch das Halten von Attributen, deren Typ eine andere Klasse ist, durch das Aufrufen bzw. Besitzen von Methoden mit Referenz auf eine andere Klasse oder wenn Interfaces verwendet werden.
+Eine Klasse kann an konkrete oder abstrakte Datentypen gekoppelt sein, an Threads, die gemeinsame Sperren besitzen oder auch an Resourcen, die gemeinsame Dateien nutzen. Dabei ist jedoch die Kopplung an stabilere Komponenten weniger problematisch.
+\newline In Visual Studio kann standardmäßig die Klassenkopplung eines Projektes berechnet werden. Dabei kann für jede klasse des projektes die klassenkopplung begutachtet werden.
+\newline In diesem Programmentwurf wird durch die inversion of Control erreicht, dass die Kopplung von Klassen hauptsächlich an stabilere komponenten besteht. Die meisten Klassen sind hauptsächlich von inneren Klassen, also von stabileren Komponenten abhängig. Diese 
+Komponenten sind stabiler, da sie seltener geändert werden, als die Klassen auf äußereren Schichten. Ein Beispiel hierfür ist, dass die Mapper auf der Adapter-Schicht hauptsächlich von Klassen der Domain-Schicht abhängig sind.
+\subsection{High Cohesion}
+Die Kohäsion ist ein Maß, das für den zusammenhalt einer Klasse steht. Es wird die semantische Nähe der Elemente einer Klasse beschrieben. 
+\newline Ein wichtiges Prinzip ist das \glqq High Cohesion \& Low Coupling \grqq -Prinzip. Es ist das Fundament für einen idealen Code, da dieses Prinzip zu einem einfacheren und verständlicherem Design des Codes führt. 
+Dieses Prinzip ist jedoch schwer automatisiert testbar, weshalb es hauptsächlich das menschliche Ermessen benötigt, um zu entscheiden ob es gut umgesetzt ist oder nicht.
+\newline Der Zusammenhalt der Klassen in diesem Projekt ist gut. Dies wird vorallem in den Entities oder Value Objects in der Domain-Schicht klar, da hier zu sehen ist, dass diese nur Eigenschaften besitzen, die semantisch zu ihnen passen.
+Ein Beispiel wäre das \glqq AdressVO \grqq . Es besitzt nur Eigenschaften, die zu einer Adresse passen, wie das Land, die Postleitzahl und die Straße, in der sich das Objekt befindet. 
+Ein weiteres Beispiel ist die \glqq UserEntity \grqq -Klasse. Diese besitzt nur Eigenschaften, die semantisch zu einem angelegten benutzer passen. Dies sind die Email-Adresse, der Name des Benutzer und das Passwort, das benltigt wird um sich mit diesem benutzer anzumelden.
+\subsection{Information Expert}
+Bei diesem Prinzip geht es um die allgemeine Zuweisung einer Zuständigkeit zu einem Projekt. Am einfachsten ist dies umzusetzen, indem einem Objekt, das eine bestimmte Information besitzt, auch die Zuständigkeit für diese Information überreicht wird. 
+Dafür muss allerdings im Designmodell eine passende Klasse existieren. Sollte dies nicht der Fall sein , wird im Domänenmodell eine passende Repräsentation gesucht und dafür eine passende Klasse im Designmodell erstellt. Dieses Objekt ist dann zuständig für die Informationen, die es besitzt. Dadurch entsteht eine Kapselung 
+von Informationen und leichteren Klassen.
+\newline In diesem programmentwurf ist dieses Prinzip in den Aggregaten sichtbar. Diese übernehmen die Verantwortung über die enthaltenen Entities und deren Informationen bzw. über die 
+enthaltenen Value Objects. Ein Beispiel hierfür wäre das \glqq BankAggregate \grqq . Dieses übernimmt die Zuständigkeit über die Informationen des \glqq AdressVO \grqq und die \glqq BankEntity \grqq .
+\subsection{Creator}
+Das Creator-Prinzip legt fest, wer für die Erzeugung eines Objektes zuständig ist. Ein Objekt kommt als Creator eines anderen Objektes in Frage, wenn es eine Beziehung zu jedem erstellten Objekt gibt. 
+Dadurch wird die Kopplung der Komponenten verringert. 
+\newline In diesem Programmentwurf sind ein Beispiel für dieses Prinzip die Mapper auf der Adapter-Schicht. Sie konvertieren Objekte und erzeugen dadurch ein neues Objekt einer anderen Klassen. Hier gibt es für jedes Objekt einen eigenen Mapper, 
+weshalb die Beziehung zwischen den Objekten und dem Mapper hergestellt ist. Dadurch wird auch die kopplung der Klassen verringert.
+\subsection{Indirection}
+Das Indirection-Prinzip besagt, dass ein System oder die Teile eines Systems voneinander entkoppelt werden. Dies ist allerdings mit viel Aufwand verbunden, bietet jedoch einen höheren Freiheitsgrad als die Nutzung von Vererbung oder Polymorphismus.
+\newline In diesem Programmentwurf wurde dies beispielsweise durch die Repository-Schnittstellen erreicht. Dieses wurden so designed, dass sie genau ihrem Anwendungszweck angepasst sind und somit eine höhere Flexibilität erreichen.
+\subsection{Polymorphism}
+Polymorphismus ist ein grundlegendes Prinzip der objektorientierten Programmierung. Dabei erhalten Methoden, je anch Typ eine andere Implementierung. Dadurch werden Fallunterscheidungen vermieden, wie If-Else bzw. Switch-Statements. 
+Es werden dafür abstrakte Klassen oder Interfaces als Basistypen genutzt. Polymorphismus macht eine Anwendung einfacher erweiterbar, da die bestehende Struktur nicht verändert werden muss. Außerdem können Frameworks einfacher extrahiert werden. 
+\newline Im Programmentwurf wird dies beispielsweise in der \glqq UserRepositoryImpl \grqq deutlich. Dieses implementiert das zugehörige Repository-Interface und fügt noch spezifische Funktionen hinzu. Das Interface 
+kann somit auch in weiteren Klassen implementiert werden, wo es benötigt wird und daraufhin weitere spezifische Funktionen innerhalb der Klasse hizufügen.
+\subsection{Controller}
+Das Controller-Prinzip besagt, dass in diesen Klassen einkommende Benutzereingaben verarbeitet werden. Sie dienen der koordination zwischen Benutzeroberfläche und Businesslogik. Dabei werden 
+die Benutzereingaben an andere Objekte delegiert, denn im Controller befindet sich keinerlei Businesslogik. 
+\newline Unterschieden werden Controller in System Controller, der für alle Aktionen des Systems zuständig ist und nur für kleine Anwendungen praktikabel ist und in Use Case Controller. Use Case Controller 
+werden für jeden einzelnen Use Case implementiert.
+\newline In diesem Programmentwurf wurden die Use Case Controller genutzt, die auf der Plugin-Schicht implementiert sind. Folgende Use Case Controller wurden implementiert:
+\begin{itemize}
+    \item UserController
+    \item KontoController
+    \item TransactionController
+    \item BankController
+\end{itemize}
+Diese Controller nehmen einkommende Benutzereingaben an und delegieren sie. Daraufhin erhalten sie ein Ergebnis und senden die zurück an den Client, der die Anfrage geschickt hat.
+\subsection{Pure Fabrication}
+Dieses Prinzip besagt, dass eine Klasse keinen Bezug zur Problemdomäne besitzt, wodurch eine Trennung von Technologie und Problemdomäne, sowie eine Kapselung von Algorithmen entsteht. Dadurch wird erreicht, 
+dass Softwareteile auch außerhalb der Domäne wiederverwendet werden können. Außerdem wird durch die kapselung von speziellen Funktionalitäten das High Cohesion-Prinzip begünstigt. Es sollte jedoch möglichst wenig vorkommen.
+\newline In diesem Programmentwurf wird dieses Prinzip einmal verwendet durch die Klassen, die eine Email an den Benutzer versendet, die die Transaktionen eines Kontos enthält. Diese Klassen können abgekapselt vom Rest der 
+Problemdomäne und können leicht wiederverwendet werden. Diese klassen befinden sich auf der Domain-Schicht im Ordner \glqq Others \grqq .
+\subsection{Protected Variations}
+Dieses Prinzip besagt, dass die Software durch die Kapselung verschiedener Implementierungen hinter einer einheitlichen Schnittstelle vor Variationen gesichert wird. Der Einfluss der Variabilität einer einzelnen Komponente soll nicht das 
+Gesamtsystem betreffen. Gute Schutzmöglichkeiten hierfür sind Polymorphie und Delegation. Weitere Möglichkeiten sind Stylesheets im Webumfeld oder Spezifikationen von Schnittstellen.
+\newline Im Programmentwurf wird dies durch die Nutzung der Repository-Interfaces, die abgekapselt implementiert werden können, für neue Datenbanken.
+
+\section{DRY}
+DRY steht für \glqq Don't repeat yourself \grqq . Dieses Prinzip kann beispielsweise auf Datenbankschemata, Testpläne, Buildsysteme oder Dokumentationen angewendet werden. Es besagt, dass nur eine Quelle der 
+Wahrheit bestehen darf und alle anderen Quellen von dieser abgeleitet werden. Dies ist vergleichabr mit den Normalformen bei RDBMS.
+\newline Die Auswirkungen einer Modifikation eines Teils haben eine definierte Reichweite. Dabei sind jedoch keine unbeteiligten Teile betroffen und alle relevanten Teile ändern sich automatisch.
+\newline Es gibt drei Arten von Duplikationen, die durch das DRY-Prinzip behandelt werden:
+\subsubsection{Imposed Duplication}
+Imposed Duplications sind auferlegte Duplikationen. Dabei glaubt der Entwickler die Duplikation ist unumgänglich.
+\subsubsection{Inadverted Duplication}
+Inadverted Duplications sind versehentliche Duplikationen, die der Entwickler nicht bemerkt.
+\subsubsection{Impatient Duplication}
+Impatient Duplications sind ungeduldige Duplikationen, wobei der Entwickler zu faul ist, um diese zu beseitigen.
+\subsection{Anwendung des DRY-Prinzips}
+Bie der Erstellung dieses Programmentwurfs wurde von Anfang an darauf geachtet, dass kein duplizierter Code erstellt wird. Es soll eher bestehender Code an verschiedenen Stellen wiederverwendet werden. Duplizierter Code kann zu folgenden Problemen führen:
+\begin{itemize}
+    \item Bei Änderungen kann es zu Inkonsistenzen kommen, die möglicherweise ein Sicherheits-Risiko darstellen. Es müssen nämlich daraufhin alle Stellen geändert werden, die den duplizierten Code enthalten, wobei es vorkommen kann, dass eine Stelle vergessen wird.
+    \item Duplizierter Code macht den Programmcode länger und unübersichtlicher.
+    \item Duplizierter Code führt zu duplizierten Bugs
+\end{itemize}
+Im Programmentwurf wurde beispielsweise der \glqq CredentialsService \grqq verwendet, der dafür sorgt, dass Name, Email und Password den Konventionen entsprechen. Dieser Service wird an einer Stelle implementiert und kann daraufhin von mehreren Stellen aufgerufen werden, 
+um Duplikationen zu verhindern. Dadurch sind auch Änderungen am Service an allen Stellen automatishc korrekt. Außerdem gibt es die Mapper der Adapter-Schicht, die an mehreren Stellen aufgerufen werden, um Konvertierungen auszuführen. Änderungen an den Datenstrukturen müssen nur innerhalb der 
+Mapper geändert werden, damit sie überall korrekt sind.

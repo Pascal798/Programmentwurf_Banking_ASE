@@ -53,7 +53,7 @@ namespace Programmentwurf_BankingApi.Plugin.Transaction
             return list;
         }
 
-        public async void create(TransactionAggregate transaction)
+        public async Task<bool> überweisen(TransactionAggregate transaction)
         {
             
             var senderKonto = await KontoRepositoryImpl.findById(transaction.TransactionInfo.getKontoIdSender());
@@ -69,6 +69,7 @@ namespace Programmentwurf_BankingApi.Plugin.Transaction
 
                 _context.Transaction.Add(transaction);
                 await _context.SaveChangesAsync();
+                return true;
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -76,6 +77,7 @@ namespace Programmentwurf_BankingApi.Plugin.Transaction
                     !KontoRepositoryImpl.KontoEntityExists(empfängerKonto.Id))
                 {
                     System.Console.WriteLine("One konto doesn't exist");
+                    return false;
                 }
                 else
                 {

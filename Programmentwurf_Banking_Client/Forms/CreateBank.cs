@@ -37,6 +37,7 @@ namespace Programmentwurf_Banking_Client.Forms
                 var cacheItempolicy = new CacheItemPolicy();
                 cacheItempolicy.AbsoluteExpiration = DateTime.Now.AddHours(1.0);
                 Cache.cache.Set("Banken", banken, cacheItempolicy);
+                Close();
             }
             else
             {

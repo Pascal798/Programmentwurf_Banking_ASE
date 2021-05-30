@@ -48,6 +48,7 @@ namespace Programmentwurf_Banking_Client
             // 
             this.PasswordBox.Location = new System.Drawing.Point(64, 149);
             this.PasswordBox.Name = "PasswordBox";
+            this.PasswordBox.PasswordChar = '*';
             this.PasswordBox.Size = new System.Drawing.Size(168, 23);
             this.PasswordBox.TabIndex = 1;
             // 

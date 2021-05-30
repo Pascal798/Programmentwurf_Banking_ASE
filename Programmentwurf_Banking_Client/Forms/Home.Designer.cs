@@ -63,7 +63,7 @@ namespace Programmentwurf_Banking_Client.Forms
             // KontozahlLabel
             // 
             this.KontozahlLabel.AutoSize = true;
-            this.KontozahlLabel.Location = new System.Drawing.Point(591, 9);
+            this.KontozahlLabel.Location = new System.Drawing.Point(547, 9);
             this.KontozahlLabel.Name = "KontozahlLabel";
             this.KontozahlLabel.Size = new System.Drawing.Size(38, 15);
             this.KontozahlLabel.TabIndex = 2;

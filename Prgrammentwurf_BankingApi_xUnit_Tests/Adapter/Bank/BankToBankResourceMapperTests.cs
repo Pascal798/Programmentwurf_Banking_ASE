@@ -16,7 +16,7 @@ namespace Programmentwurf_BankingApi.Adapter.Bank.Tests
         {
             var banks = CreateBanks();
             var bankArray = banks.ToArray();
-            var bankList = BankToBankResourceMapper.getInstance().convertToBankResourceList(banks).ToArray();
+            var bankList = BankMapper.getInstance().convertToBankResourceList(banks).ToArray();
 
             for (int i = 0; i < bankArray.Length; i++)
             {
@@ -42,7 +42,7 @@ namespace Programmentwurf_BankingApi.Adapter.Bank.Tests
         public void applyTest()
         {
             var bank = new BankAggregate("TestBank", "GENODETEST", "Deutschland", 76703, "Teststraße");
-            var bankResource = BankToBankResourceMapper.getInstance().apply(bank);
+            var bankResource = BankMapper.getInstance().apply(bank);
 
             Assert.Equal(bank.Bank.Name, bankResource.Name);
             Assert.Equal(bank.Bank.BIC, bankResource.BIC);

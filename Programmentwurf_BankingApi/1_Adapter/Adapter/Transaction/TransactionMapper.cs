@@ -3,38 +3,38 @@ using _3_Domain.Domain.Aggregates;
 
 namespace _1_Adapter.Adapter.Transaction
 {
-    public class TransactionToTransactionResourceMapper
+    public class TransactionMapper
     {
-        private static TransactionToTransactionResourceMapper instance;
+        private static TransactionMapper instance;
 
-        public static TransactionToTransactionResourceMapper getInstance()
+        public static TransactionMapper getInstance()
         {
             if(instance == null)
             {
-                instance = new TransactionToTransactionResourceMapper();
+                instance = new TransactionMapper();
             }
             return instance;
         }
-        public TransactionResource apply(TransactionAggregate transaction)
+        public Transaction apply(TransactionAggregate transaction)
         {
             return map(transaction);
         }
 
-        private TransactionResource map(TransactionAggregate transaction)
+        private Transaction map(TransactionAggregate transaction)
         {
-            return new TransactionResource(
+            return new Transaction(
                 transaction.TransactionInfo.getDate(),
                 transaction.TransactionInfo.getBetrag(),
                 transaction.TransactionInfo.getKontoIdSender(),
                 transaction.TransactionInfo.getKontoIdEmpfänger());
         }
 
-        public List<TransactionResource> convertToTransactionResourceList(List<TransactionAggregate> transactionEntities)
+        public List<Transaction> convertToTransactionResourceList(List<TransactionAggregate> transactionEntities)
         {
-            var transactionlist = new List<TransactionResource>();
+            var transactionlist = new List<Transaction>();
             foreach (var transactionEntity in transactionEntities)
             {
-                transactionlist.Add(new TransactionResource(
+                transactionlist.Add(new Transaction(
                     transactionEntity.TransactionInfo.getDate(), 
                     transactionEntity.TransactionInfo.getBetrag(), 
                     transactionEntity.TransactionInfo.getKontoIdSender(), 

@@ -12,7 +12,7 @@ namespace Programmentwurf_BankingApi.Adapter.Konto.Tests
         {
             var konten = CreateKonten();
             var kontoArray = konten.ToArray();
-            var kontolist = KontoToKontoResourceMapper.getInstance().convertToKontoResourceList(konten).ToArray();
+            var kontolist = KontoMapper.getInstance().convertToKontoResourceList(konten).ToArray();
 
 
             for (int i = 0; i < kontoArray.Length; i++)
@@ -36,7 +36,7 @@ namespace Programmentwurf_BankingApi.Adapter.Konto.Tests
         public void applyTest()
         {
             var konto = new KontoEntity(1, 1, "GENODE" + 1);
-            var kontoResource = KontoToKontoResourceMapper.getInstance().apply(konto);
+            var kontoResource = KontoMapper.getInstance().apply(konto);
 
             Assert.Equal(konto.Id, kontoResource.Id);
             Assert.Equal(konto.UserId, kontoResource.UserId);

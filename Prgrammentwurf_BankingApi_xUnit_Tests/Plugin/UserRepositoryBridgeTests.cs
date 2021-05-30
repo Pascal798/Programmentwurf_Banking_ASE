@@ -22,7 +22,7 @@ namespace Programmentwurf_BankingApi_xUnit_Tests.Plugin
 
             var query = new UserRepositoryImpl(context);
 
-            query.create(user);
+            query.kontoErstellen(user);
             var result = context.Users.Find(user.Id);
 
             Assert.Equal(user.Id, result.Id);

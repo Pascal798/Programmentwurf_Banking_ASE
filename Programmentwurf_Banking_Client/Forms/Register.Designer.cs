@@ -108,6 +108,7 @@ namespace Programmentwurf_Banking_Client.Forms
             this.Controls.Add(this.NameBox);
             this.Controls.Add(this.Email);
             this.Controls.Add(this.EmailBox);
+            this.Name.Name = "RegisterBtn";
             this.Text = "Register";
             this.ResumeLayout(false);
             this.PerformLayout();

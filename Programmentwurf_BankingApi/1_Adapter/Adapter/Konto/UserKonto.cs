@@ -1,10 +1,10 @@
 ﻿namespace _1_Adapter.Adapter.Konto
 {
-    public class KontoResource
+    public class UserKonto
     {
-        public KontoResource() { }
+        public UserKonto() { }
 
-        public KontoResource(int id, int userId)
+        public UserKonto(int id, int userId)
         {
             Id = id;
             UserId = userId;

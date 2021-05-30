@@ -26,27 +26,27 @@ namespace Programmentwurf_BankingApi.Plugin.User
 
         }
 
-        public async void create(UserEntity user)
+        public async Task<bool> registrieren(UserEntity user)
         {
             var userEntity = findByEmail(user.Email);
             if(userEntity != null)
             {
                 Out("User already exists");
-                return;
+                return false;
             }
 
             var credentialsService = new CredentialsService();
             if(
-                credentialsService.isNameValid(user.Name) && 
-                credentialsService.isEmailValid(user.Email) && 
-                credentialsService.isPasswordValid(user.Password))
+                credentialsService.credentialsAreValid(user.Name, user.Email, user.Password))
             {
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
                 Out("Wrong credentials");
+                return false;
             }
 
 
@@ -54,7 +54,7 @@ namespace Programmentwurf_BankingApi.Plugin.User
 
 
 
-        public async void delete(int userid)
+        public async Task<bool> delete(int userid)
         {
             var userEntity = await _context.Users.FindAsync(userid);
             if (userEntity == null)
@@ -62,23 +62,36 @@ namespace Programmentwurf_BankingApi.Plugin.User
                 WriteLine("User not found");
             }
 
-            _context.Users.Remove(userEntity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Users.Remove(userEntity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                WriteLine(e);
+                return false;
+            }
+
+            
         }
 
-        public async void update(UserEntity user)
+        public async Task<bool> update(UserEntity user)
         {
             _context.Update(user);
 
             try
             {
                 await _context.SaveChangesAsync();
+                return true;
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!UserEntityExists(user.Id))
                 {
                     WriteLine("User not found");
+                    return false;
                 }
                 else
                 {

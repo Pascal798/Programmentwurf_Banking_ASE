@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,13 +35,23 @@ namespace Programmentwurf_BankingApi.Plugin.Konto
             return list;
         }
 
-        public async void create(KontoEntity konto)
+        public async Task<bool> kontoErstellen(KontoEntity konto)
         {
             _context.Konten.Add(konto);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            
         }
 
-        public async void updateKontostand(int kontoid, double betrag)
+        public async Task<bool> kontostandÄndern(int kontoid, double betrag)
         {
             var konto = await findById(kontoid);
             konto.Kontostand += betrag;
@@ -48,12 +59,14 @@ namespace Programmentwurf_BankingApi.Plugin.Konto
             {
                 _context.Update(konto);
                 await _context.SaveChangesAsync();
+                return true;
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!KontoEntityExists(konto.Id))
                 {
                     System.Console.WriteLine("Konto doesn't exist");
+                    return false;
                 }
                 else
                 {
@@ -62,17 +75,27 @@ namespace Programmentwurf_BankingApi.Plugin.Konto
             }
         }
 
-        public async void delete(int kontoid)
+        public async Task<bool> kontoLöschen(int kontoid)
         {
             var kontoEntity = await _context.Konten.FindAsync(kontoid);
             if (kontoEntity == null)
             {
                 System.Console.WriteLine("User not found");
-                return;
+                return true;
             }
 
-            _context.Konten.Remove(kontoEntity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Konten.Remove(kontoEntity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            
         }
 
         public async Task<KontoEntity> findById(int kontoid)

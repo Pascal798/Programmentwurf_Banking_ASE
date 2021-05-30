@@ -16,7 +16,7 @@ namespace Programmentwurf_BankingApi.Plugin.Bank
         {
             _context = context;
         }
-        public async Task<bool> create(BankAggregate bank)
+        public async Task<bool> bankAnlegen(BankAggregate bank)
         {
             if(!_context.BankAggregate.Any( x => x.Bank.BIC == bank.Bank.BIC))
             {
@@ -28,7 +28,7 @@ namespace Programmentwurf_BankingApi.Plugin.Bank
             return false;
 
         }
-        public async Task<bool> delete(int bankid)
+        public async Task<bool> bankLöschen(int bankid)
         {
             var bank = await _context.BankAggregate.FindAsync(bankid);
             if(bank == null)
