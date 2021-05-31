@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using _1_Adapter.Adapter.Konto;
 using _3_Domain.Domain.Entities;
+using _3_Domain.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Programmentwurf_BankingApi.Plugin.Konto;
 
@@ -11,12 +12,12 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     [ApiController]
     public class KontoController : ControllerBase
     {
-        private KontoRepositoryImpl _kontoRepositoryImpl;
+        private KontoRepository _kontoRepo;
         private KontoMapper _kontoMapper;
 
-        public KontoController(KontoRepositoryImpl kontoRepositoryImpl)
+        public KontoController(KontoRepository kontoRepo)
         {
-            _kontoRepositoryImpl = kontoRepositoryImpl;
+            _kontoRepo = kontoRepo;
             _kontoMapper = KontoMapper.getInstance();
         }
 
@@ -24,7 +25,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet]
         public async Task<List<UserKonto>> GetKonten()
         {
-            var konten = await _kontoRepositoryImpl.findAllKonten();
+            var konten = await _kontoRepo.findAllKonten();
             var kontolist = _kontoMapper.convertToKontoResourceList(konten);
 
             return kontolist;
@@ -34,7 +35,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("[action]/{userid}")]
         public List<KontoEntity> GetKonten(int userid)
         {
-            var konten = _kontoRepositoryImpl.getAllKontenFromUser(userid);
+            var konten = _kontoRepo.getAllKontenFromUser(userid);
 
             return konten;
         }
@@ -43,7 +44,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("{kontoid}")]
         public async Task<UserKonto> GetKontoEntity(int kontoid)
         {
-            var kontoEntity = await _kontoRepositoryImpl.findById(kontoid);
+            var kontoEntity = await _kontoRepo.findById(kontoid);
 
             if (kontoEntity == null)
             {
@@ -61,7 +62,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPut("{kontoid}/{betrag}")]
         public async Task<IActionResult> PutKontoEntity(int kontoid, double betrag)
         {
-            var response = await  _kontoRepositoryImpl.kontostandÄndern(kontoid, betrag);
+            var response = await  _kontoRepo.kontostandÄndern(kontoid, betrag);
             if (response)
             {
                 return new OkResult();
@@ -76,7 +77,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         public async Task<IActionResult> PostKontoEntity(KontoEntity konto, int userid)
         {
             konto.UserId = userid;
-            var response = await _kontoRepositoryImpl.kontoErstellen(konto);
+            var response = await _kontoRepo.kontoErstellen(konto);
 
             if (response)
             {
@@ -93,7 +94,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpDelete("{kontoid}")]
         public async Task<IActionResult> DeleteKontoEntity(int kontoid)
         {
-            var response  = await _kontoRepositoryImpl.kontoLöschen(kontoid);
+            var response  = await _kontoRepo.kontoLöschen(kontoid);
 
             if (response)
             {

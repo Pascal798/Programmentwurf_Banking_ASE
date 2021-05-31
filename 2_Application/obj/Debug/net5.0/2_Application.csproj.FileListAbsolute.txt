@@ -1,0 +1,15 @@
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\bin\Debug\net5.0\2_Application.deps.json
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\bin\Debug\net5.0\2_Application.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\bin\Debug\net5.0\ref\2_Application.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\bin\Debug\net5.0\2_Application.pdb
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\bin\Debug\net5.0\3_Domain.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\bin\Debug\net5.0\3_Domain.pdb
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.csprojAssemblyReference.cache
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.AssemblyInfoInputs.cache
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.AssemblyInfo.cs
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.csproj.CoreCompileInputs.cache
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.csproj.CopyComplete
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\ref\2_Application.dll
+C:\Users\Pasca\source\repos\Programmentwurf_BankingApi\Programmentwurf_Banking_ASE\2_Application\obj\Debug\net5.0\2_Application.pdb

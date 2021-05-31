@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using _1_Adapter.Adapter.Bank;
 using _1_Adapter.Adapter.Konto;
 using _3_Domain.Domain.Aggregates;
+using _3_Domain.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Programmentwurf_BankingApi.Plugin.Bank;
 
@@ -12,13 +13,13 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     [ApiController]
     public class BankController : ControllerBase
     {
-        private BankRepositoryImpl _bankRepositoryImpl;
+        private BankRepository _bankRepo;
         private BankMapper _bankMapper;
         private KontoMapper _kontoMapper;
 
-        public BankController(BankRepositoryImpl bankRepositoryImpl)
+        public BankController(BankRepository bankRepo)
         {
-            _bankRepositoryImpl = bankRepositoryImpl;
+            _bankRepo = bankRepo;
             _bankMapper = BankMapper.getInstance();
             _kontoMapper = KontoMapper.getInstance();
         }
@@ -27,7 +28,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet]
         public async Task<List<_1_Adapter.Adapter.Bank.Bank>> GetBankAggregate()
         {
-            var banks = await _bankRepositoryImpl.getAllBanks();
+            var banks = await _bankRepo.getAllBanks();
             var list = _bankMapper.convertToBankResourceList(banks);
             return list;
         }
@@ -36,7 +37,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("{id}")]
         public async Task<_1_Adapter.Adapter.Bank.Bank> GetBankAggregate(int bic)
         {
-            var bankAggregate = await _bankRepositoryImpl.findById(bic);
+            var bankAggregate = await _bankRepo.findById(bic);
 
             if (bankAggregate == null)
             {
@@ -51,7 +52,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPost]
         public async Task<CreatedAtActionResult> PostBankAggregate(_1_Adapter.Adapter.Bank.Bank bank)
         {
-            await _bankRepositoryImpl.bankAnlegen(new BankAggregate(
+            await _bankRepo.bankAnlegen(new BankAggregate(
                 bank.Name, 
                 bank.BIC, 
                 bank.Land, 
@@ -66,18 +67,9 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBankAggregate(int id)
         {
-            await _bankRepositoryImpl.bankLöschen(id);
+            await _bankRepo.bankLöschen(id);
             return NoContent();
         }
 
-        // GET: api/Bank/GetKonten/5
-        [HttpGet("[action]/{id}")]
-        public async Task<List<UserKonto>> GetKonten(string bic)
-        {
-            var konten = await _bankRepositoryImpl.getKonten(bic);
-            var list = _kontoMapper.convertToKontoResourceList(konten);
-
-            return list;
-        }
     }
 }

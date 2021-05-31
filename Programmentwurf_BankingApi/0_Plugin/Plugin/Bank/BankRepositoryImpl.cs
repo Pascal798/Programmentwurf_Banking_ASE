@@ -47,10 +47,6 @@ namespace Programmentwurf_BankingApi.Plugin.Bank
         {
             return await _context.BankAggregate.FindAsync(bankid);
         }
-        public async Task<List<KontoEntity>> getKonten(string bic)
-        {
-            return await _context.Konten.Where(x => x.BIC == bic).ToListAsync();
-        }
         private bool BankAggregateExists(string bic)
         {
             return _context.BankAggregate.Any(e => e.Bank.BIC == bic);

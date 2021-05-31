@@ -1,6 +1,6 @@
-using _3_Domain.Domain.Domain_Services;
 using _3_Domain.Domain.Others;
 using _3_Domain.Domain.Others.Email;
+using _3_Domain.Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,10 +31,14 @@ namespace Programmentwurf_BankingApi
             services.AddDbContext<BankingContext>(opt => opt.UseInMemoryDatabase("Banking"));
             services.AddScoped<IBankingContext, BankingContext>();
             services.AddScoped<UserRepositoryImpl, UserRepositoryImpl>();
+            services.AddScoped<UserRepository, UserRepositoryImpl>();
             services.AddScoped<ChangePasswordImpl, ChangePasswordImpl>();
             services.AddScoped<KontoRepositoryImpl, KontoRepositoryImpl>();
+            services.AddScoped<KontoRepository, KontoRepositoryImpl>();
             services.AddScoped<TransactionRepositoryImpl, TransactionRepositoryImpl>();
+            services.AddScoped<TransactionRepository, TransactionRepositoryImpl>();
             services.AddScoped<BankRepositoryImpl, BankRepositoryImpl>();
+            services.AddScoped<BankRepository, BankRepositoryImpl>();
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.AddTransient<IMailService, MailService>();
             services.AddControllers();

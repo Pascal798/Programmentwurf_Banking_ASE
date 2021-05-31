@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using _1_Adapter.Adapter.Transaction;
 using _3_Domain.Domain.Aggregates;
+using _3_Domain.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Programmentwurf_BankingApi.Plugin.Transaction;
 
@@ -11,12 +12,12 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private TransactionRepositoryImpl _transactionRepositoryImpl;
+        private TransactionRepository _transactionRepo;
         private TransactionMapper _transactionMapper;
 
-        public TransactionController(TransactionRepositoryImpl transactionRepositoryImpl)
+        public TransactionController(TransactionRepository transactionRepo)
         {
-            _transactionRepositoryImpl = transactionRepositoryImpl;
+            _transactionRepo = transactionRepo;
             _transactionMapper = TransactionMapper.getInstance();
         }
 
@@ -24,7 +25,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("[action]/{kontoid}")]
         public async Task<List<_1_Adapter.Adapter.Transaction.Transaction>> GetTransactions(int kontoid)
         {
-            var transactions = await _transactionRepositoryImpl.getAllTransactions(kontoid);
+            var transactions = await _transactionRepo.getAllTransactions(kontoid);
             var transactionList = _transactionMapper.convertToTransactionResourceList(transactions);
 
             return transactionList;
@@ -34,7 +35,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("{transactionid}")]
         public async Task<_1_Adapter.Adapter.Transaction.Transaction> GetTransactionEntity(int transactionid)
         {
-            var transactionEntity = await _transactionRepositoryImpl.findById(transactionid);
+            var transactionEntity = await _transactionRepo.findById(transactionid);
 
             if (transactionEntity == null)
             {
@@ -59,7 +60,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
                 transactionEntity.KontoIdEmpfänger
                 );
 
-            var response = await _transactionRepositoryImpl.überweisen(transaction);
+            var response = await _transactionRepo.überweisen(transaction);
             if (response)
             {
                 return new OkResult();
@@ -73,7 +74,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("[action]/{kontoid}")]
         public async Task<IActionResult> GetTransactionAsMail(int kontoid)
         {
-            return await _transactionRepositoryImpl.getTransactionsAsMail(kontoid);
+            return await _transactionRepo.getTransactionsAsMail(kontoid);
         }
     }
 }

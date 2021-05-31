@@ -13,13 +13,13 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private UserRepository _userRepositoryImpl;
+        private UserRepository _userRepo;
         private UserMapper _userMapper;
         private IChangePassword _changePasswordImpl;
 
-        public UserController(UserRepositoryImpl impl, ChangePasswordImpl pwImpl)
+        public UserController(UserRepository impl, ChangePasswordImpl pwImpl)
         {
-            _userRepositoryImpl = impl;
+            _userRepo = impl;
             _changePasswordImpl = pwImpl;
             _userMapper = UserMapper.getInstance();
         }
@@ -28,7 +28,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet]
         public async Task<List<_1_Adapter.Adapter.User.User>> GetUsers()
         {
-            var users = await _userRepositoryImpl.findAllUsers();
+            var users = await _userRepo.findAllUsers();
             var userlist = _userMapper.convertToUserList(users);
             return userlist;
         }
@@ -37,7 +37,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpGet("{id}")]
         public async Task<_1_Adapter.Adapter.User.User> GetUserEntity(int id)
         {
-            var userEntity = await _userRepositoryImpl.findById(id);
+            var userEntity = await _userRepo.findById(id);
 
             if (userEntity == null)
             {
@@ -54,7 +54,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUserEntity(UserEntity userEntity)
         {
-            var response = await _userRepositoryImpl.update(userEntity);
+            var response = await _userRepo.update(userEntity);
 
             if (response)
             {
@@ -69,7 +69,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPost]
         public async Task<IActionResult> PostUserEntity(UserEntity userEntity)
         {
-            var response = await _userRepositoryImpl.registrieren(userEntity);
+            var response = await _userRepo.registrieren(userEntity);
 
             if (response)
             {
@@ -83,7 +83,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUserEntity(int id)
         {
-            var response = await _userRepositoryImpl.delete(id);
+            var response = await _userRepo.delete(id);
             if (response)
             {
                 return new OkResult();
@@ -96,7 +96,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
         [HttpPost("[action]")]
         public UserEntity Login(LoginObject loginInfo)
         {
-            return _userRepositoryImpl.login(loginInfo.email, loginInfo.password);
+            return _userRepo.login(loginInfo.email, loginInfo.password);
         }
 
         // POST: api/User/ChangePassword

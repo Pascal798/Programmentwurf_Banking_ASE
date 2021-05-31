@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3_Domain", "Programmentwurf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Programmentwurf_BankingApi", "Programmentwurf_BankingApi", "{8463F9AA-3E2B-466F-A263-AC2215148BE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Programmentwurf_BankingApi_xUnit_Tests", "Prgrammentwurf_BankingApi_xUnit_Tests\Programmentwurf_BankingApi_xUnit_Tests.csproj", "{7B25E29A-7DE2-4025-811F-4F672D19979E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Programmentwurf_BankingApi_xUnit_Tests", "Prgrammentwurf_BankingApi_xUnit_Tests\Programmentwurf_BankingApi_xUnit_Tests.csproj", "{7B25E29A-7DE2-4025-811F-4F672D19979E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Programmentwurf_BankingApi_Mock_Tests", "Programmentwurf_BankingApi_Mock_Tests\Programmentwurf_BankingApi_Mock_Tests.csproj", "{8B01E4A9-9006-40E0-93C1-48A219B10A11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Programmentwurf_BankingApi_Mock_Tests", "Programmentwurf_BankingApi_Mock_Tests\Programmentwurf_BankingApi_Mock_Tests.csproj", "{8B01E4A9-9006-40E0-93C1-48A219B10A11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
