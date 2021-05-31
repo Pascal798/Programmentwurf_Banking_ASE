@@ -68,7 +68,7 @@ namespace Programmentwurf_BankingApi.Plugin.Controllers
                 return new OkResult();
             }
 
-            return NoContent();
+            return new UnauthorizedObjectResult("Failure");
         }
 
         // POST: api/Konto

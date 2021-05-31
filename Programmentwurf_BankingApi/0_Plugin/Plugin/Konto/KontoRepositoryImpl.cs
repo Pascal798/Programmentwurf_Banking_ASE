@@ -54,24 +54,31 @@ namespace Programmentwurf_BankingApi.Plugin.Konto
         public async Task<bool> kontostandÄndern(int kontoid, double betrag)
         {
             var konto = await findById(kontoid);
-            konto.Kontostand += betrag;
-            try
+            if (konto.Kontostand + betrag >= 0)
             {
-                _context.Update(konto);
-                await _context.SaveChangesAsync();
-                return true;
+                konto.Kontostand += betrag;
+                try
+                {
+                    _context.Update(konto);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!KontoEntityExists(konto.Id))
+                    {
+                        System.Console.WriteLine("Konto doesn't exist");
+                        return false;
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!KontoEntityExists(konto.Id))
-                {
-                    System.Console.WriteLine("Konto doesn't exist");
-                    return false;
-                }
-                else
-                {
-                    throw;
-                }
+                return false;
             }
         }
 

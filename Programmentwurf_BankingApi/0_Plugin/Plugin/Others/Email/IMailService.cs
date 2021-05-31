@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace _3_Domain.Domain.Others.Email
+namespace Programmentwurf_BankingApi.Plugin.Others
 {
      public interface IMailService
     {

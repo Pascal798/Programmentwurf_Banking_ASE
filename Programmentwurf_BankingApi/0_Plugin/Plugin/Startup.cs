@@ -1,5 +1,3 @@
-using _3_Domain.Domain.Others;
-using _3_Domain.Domain.Others.Email;
 using _3_Domain.Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Programmentwurf_BankingApi.Plugin;
 using Programmentwurf_BankingApi.Plugin.Bank;
 using Programmentwurf_BankingApi.Plugin.Konto;
+using Programmentwurf_BankingApi.Plugin.Others;
 using Programmentwurf_BankingApi.Plugin.Transaction;
 using Programmentwurf_BankingApi.Plugin.User;
 

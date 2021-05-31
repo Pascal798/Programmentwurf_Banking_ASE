@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
-using _3_Domain.Domain.Others.Email;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace _3_Domain.Domain.Others
+namespace Programmentwurf_BankingApi.Plugin.Others
 {
     public class MailService : IMailService
     {

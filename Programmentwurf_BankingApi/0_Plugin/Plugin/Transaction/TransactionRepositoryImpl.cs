@@ -8,9 +8,8 @@ using System.Globalization;
 using System.Threading.Tasks;
 using _3_Domain.Domain.Aggregates;
 using _3_Domain.Domain.Entities;
-using _3_Domain.Domain.Others;
-using _3_Domain.Domain.Others.Email;
 using _3_Domain.Domain.Repositories;
+using Programmentwurf_BankingApi.Plugin.Others;
 
 namespace Programmentwurf_BankingApi.Plugin.Transaction
 {

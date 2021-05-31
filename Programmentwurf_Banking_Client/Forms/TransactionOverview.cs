@@ -42,7 +42,11 @@ namespace Programmentwurf_Banking_Client.Forms
 
         private void SendAsMailBtn_Click(object sender, EventArgs e)
         {
-            KontoProcessor.GetTransactionsOfKontoAsMail(int.Parse(KontoIdBox.SelectedItem.ToString()));
+            if (KontoIdBox.SelectedItem != null)
+            {
+                KontoProcessor.GetTransactionsOfKontoAsMail(int.Parse(KontoIdBox.SelectedItem.ToString()));
+            }
+            
         }
     }
 }
