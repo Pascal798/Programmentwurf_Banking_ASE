@@ -1,14 +1,14 @@
 # Programmentwurf_Banking_ASE
 Programmentwurf für die Vorlesung Advanced Software Engineering
 ##Implemented Features:
-*Registrieren / Login
-*Konto anlegen
-*Geld auf Konto überweisen / Geld von Konto abbuchen
-*Überweisung auf andere Konten (eigene und fremde Konten)
-*Transaktionen einsehen
-*Transaktionen eines Kontos als Mail senden
-*Banken anlegen
-*Passwort ändern
+* Registrieren / Login
+* Konto anlegen
+* Geld auf Konto überweisen / Geld von Konto abbuchen
+* Überweisung auf andere Konten (eigene und fremde Konten)
+* Transaktionen einsehen
+* Transaktionen eines Kontos als Mail senden
+* Banken anlegen
+* Passwort ändern
 
 ##Run the Project with Visual Studio 2019
 Um die WebApi in Visual Studio 2019 zu starten, wird die gesamte Projektmappe mit Visual
