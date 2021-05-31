@@ -32,6 +32,8 @@ werden. Dafür wird in den Ordner „Programmentwurf_BankingApi “navigiert und
 den Projektordner „0_Plugin “. Dort wird über die Terminal-Konsole folgende Befehle ausgeführt:
 * dotnet build
 * dotnet run
+
+
 Mit „dotnet “build wird versucht die Anwendung zu kompilieren. Dadurch werden auch alle
 NuGet-Pakete heruntergeladen, die für die Entwicklung des Porgramms genutzt wurden.
 Mit „dotnet run “wird daraufhin die Anwendung gestartet. Wird die Anwendung über Visual
